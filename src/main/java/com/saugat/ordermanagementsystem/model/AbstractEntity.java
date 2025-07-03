@@ -1,7 +1,10 @@
 package com.saugat.ordermanagementsystem.model;
 
+import jakarta.persistence.MappedSuperclass;
+
 import java.time.LocalTime;
 
+@MappedSuperclass
 public abstract class AbstractEntity extends AbstractPKEntity{
     private LocalTime createdAt;
     private LocalTime modifiedAt;

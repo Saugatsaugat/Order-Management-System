@@ -1,6 +1,8 @@
 package com.saugat.ordermanagementsystem.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
-public abstract class AbstractRepo<T> implements JpaRepository<T, Long> {
+@NoRepositoryBean
+public interface AbstractRepo<T> extends JpaRepository<T, Long> {
 }
