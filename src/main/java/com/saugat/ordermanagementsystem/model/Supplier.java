@@ -94,12 +94,6 @@ public class Supplier extends AbstractEntity{
 
     @Override
     public String toString() {
-        return "Supplier{" +
-                "companyName='" + companyName + '\'' +
-                ", contactName='" + contactName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", country='" + country + '\'' +
-                ", address=" + address +
-                '}';
+        return "id: "+ super.getId();
     }
 }

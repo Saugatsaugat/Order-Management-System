@@ -131,17 +131,7 @@ public class Address extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Address{" +
-                "id='" + getId() + '\'' +
-                "street='" + street + '\'' +
-                ", apt='" + apt + '\'' +
-                ", building='" + building + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zip='" + zip + '\'' +
-                ", landmark='" + landmark + '\'' +
-                ", country='" + country + '\'' +
-                '}';
+        return "id: "+ super.getId();
     }
 }
 

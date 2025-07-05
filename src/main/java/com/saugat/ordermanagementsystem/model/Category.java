@@ -60,10 +60,6 @@ public class Category extends AbstractEntity{
 
     @Override
     public String toString() {
-        return "Category{" +
-                "id='" + getId() +'\''+
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return "id: "+ super.getId();
     }
 }
