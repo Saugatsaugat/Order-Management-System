@@ -1,21 +1,21 @@
 package com.saugat.ordermanagementsystem.controller;
 
 import com.saugat.ordermanagementsystem.service.IService;
-import com.saugat.ordermanagementsystem.service.SupplierService;
-import com.saugat.ordermanagementsystem.wrapper.SupplierVo;
+import com.saugat.ordermanagementsystem.service.ProductService;
+import com.saugat.ordermanagementsystem.wrapper.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/supplierController")
-@RequestMapping("/supplier")
-public class SupplierController extends AbstractController<SupplierVo> {
+@RestController("productController")
+@RequestMapping("/product")
+public class ProductController extends AbstractController<ProductVo> {
 
     @Autowired
-    private SupplierService service;
+    private ProductService service;
 
     @Override
-    protected IService<SupplierVo> getService() {
+    protected IService<ProductVo> getService() {
         return service;
     }
 }
