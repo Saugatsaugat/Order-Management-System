@@ -12,7 +12,7 @@ public class Supplier extends AbstractEntity{
     private String companyName;
     @Column(name="contact_name")
     private String contactName;
-    @Column(name="phone", length=15)
+    @Column(name="phone", length=15, unique = true)
     private String phone;
     @Column(name = "country", length=100)
     private String country;

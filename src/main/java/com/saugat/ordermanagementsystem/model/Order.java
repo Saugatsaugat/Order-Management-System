@@ -6,24 +6,25 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order extends AbstractEntity{
 
-    @Column(name = "order_date", nullable = false)
+    @Column(name = "order_date")
     private LocalDate orderDate;
     @Column(name = "require_date")
     private LocalDate requireDate;
-    @Column(name = "shipped_date", nullable = false)
+    @Column(name = "shipped_date")
     private LocalDate shippedDate;
     @Column(name = "ship_via")
     private String shipVia;
     @OneToOne
+    @JoinColumn(name = "ship_address_id", referencedColumnName = "id")
     private Address shipAddress;
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
     @ManyToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
 
     public Order() {

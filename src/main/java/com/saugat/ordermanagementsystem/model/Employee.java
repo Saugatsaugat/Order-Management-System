@@ -22,7 +22,7 @@ public class Employee extends AbstractEntity {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
-    @Column(name = "phone", length = 15)
+    @Column(name = "phone", length = 15, unique = true)
     private String phone;
 
     public Employee() {

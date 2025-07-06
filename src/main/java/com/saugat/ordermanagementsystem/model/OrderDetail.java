@@ -13,13 +13,13 @@ public class OrderDetail extends AbstractEntity{
     private BigDecimal unitPrice;
     @Column(name = "quantity")
     private Long quantity;
-    @Column(name = "discount")
-    private BigDecimal discount;
+    @Column(name = "discount", columnDefinition = "Decimal(19, 2) default '0.00'")
+    private BigDecimal discount = BigDecimal.ZERO;
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
 
     public OrderDetail() {

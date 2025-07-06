@@ -12,7 +12,7 @@ public class Shipper extends AbstractEntity {
 
     @Column(name = "company_name", nullable = false)
     private String companyName;
-    @Column(name="phone")
+    @Column(name = "phone", unique = true, nullable = false)
     private String phone;
 
     public Shipper() {
@@ -59,6 +59,6 @@ public class Shipper extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "id: "+ super.getId();
+        return "id: " + super.getId();
     }
 }

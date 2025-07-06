@@ -15,7 +15,7 @@ public class Customer extends AbstractEntity {
     private String companyName;
     @Column(name = "contact_name")
     private String contactName;
-    @Column(name = "phone", length = 15)
+    @Column(name = "phone", length = 15, unique = true)
     private String phone;
     @OneToOne
     private Address address;
