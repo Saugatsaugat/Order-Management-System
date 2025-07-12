@@ -1,5 +1,8 @@
 package com.saugat.ordermanagementsystem.config;
 
+import com.saugat.ordermanagementsystem.rabbitMQ.Consumer;
+import com.saugat.ordermanagementsystem.rabbitMQ.Publisher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -9,11 +12,18 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.concurrent.TimeoutException;
 
 @Component
 public class SqlRunner {
 
     private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private Publisher publisher;
+
+    @Autowired
+    private Consumer consumer;
 
     public SqlRunner(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
@@ -26,9 +36,10 @@ public class SqlRunner {
     private Resource postSql;
 
     @EventListener(ApplicationReadyEvent.class)
-    public void runSqlScripts() throws IOException{
+    public void runSqlScripts() throws IOException, TimeoutException {
         runSqlFile(preSql, "PreSQL");
         runSqlFile(postSql, "PostSQL");
+        publisher.generateMessage();
     }
 
     public void runSqlFile(Resource resource, String label) throws IOException{
