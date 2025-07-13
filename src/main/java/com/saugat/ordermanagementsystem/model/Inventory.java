@@ -1,0 +1,92 @@
+package com.saugat.ordermanagementsystem.model;
+
+import jakarta.persistence.*;
+
+import java.math.BigDecimal;
+import java.time.LocalTime;
+import java.util.Objects;
+
+@Entity
+@Table(name="inventory")
+public class Inventory extends AbstractEntity{
+
+    @OneToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product;
+    @Column(name = "quantity_per_unit")
+    private Long quantityPerUnit;
+    @Column(name = "unit_price")
+    private BigDecimal unitPrice;
+    @Column(name = "units_in_stock")
+    private Long unitsInStock;
+    @Column(name = "last_updated")
+    private LocalTime lastUpdated;
+
+    public Inventory() {
+    }
+
+    public Inventory(Product product, Long quantityPerUnit, BigDecimal unitPrice, Long unitsInStock, LocalTime lastUpdated) {
+        this.product = product;
+        this.quantityPerUnit = quantityPerUnit;
+        this.unitPrice = unitPrice;
+        this.unitsInStock = unitsInStock;
+        this.lastUpdated = lastUpdated;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Long getQuantityPerUnit() {
+        return quantityPerUnit;
+    }
+
+    public void setQuantityPerUnit(Long quantityPerUnit) {
+        this.quantityPerUnit = quantityPerUnit;
+    }
+
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public Long getUnitsInStock() {
+        return unitsInStock;
+    }
+
+    public void setUnitsInStock(Long unitsInStock) {
+        this.unitsInStock = unitsInStock;
+    }
+
+    public LocalTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(LocalTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Inventory inventory = (Inventory) o;
+        return Objects.equals(product, inventory.product) && Objects.equals(quantityPerUnit, inventory.quantityPerUnit) && Objects.equals(unitPrice, inventory.unitPrice) && Objects.equals(unitsInStock, inventory.unitsInStock) && Objects.equals(lastUpdated, inventory.lastUpdated);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(product, quantityPerUnit, unitPrice, unitsInStock, lastUpdated);
+    }
+
+    @Override
+    public String toString() {
+        return "Id: "+super.getId();
+    }
+}
