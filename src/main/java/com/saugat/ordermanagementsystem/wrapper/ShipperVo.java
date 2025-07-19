@@ -1,11 +1,14 @@
 package com.saugat.ordermanagementsystem.wrapper;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ShipperVo extends AbstractEntityVo {
 
+    @NotNull(message = "Company name can not be null")
     private String companyName;
+    @NotNull(message = "Shipper phone number can not be null")
     private String phone;
 
     public ShipperVo() {

@@ -1,21 +1,22 @@
 package com.saugat.ordermanagementsystem.wrapper;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
 @Component
 public class OrderVo extends AbstractEntityVo {
-
+    @NotNull(message = "Order date can not be null")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime orderDate;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime requireDate;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime shippedDate;
-
     private String shipVia;
+    @NotNull(message = "Customer can not be null")
     private CustomerVo customer;
 
 

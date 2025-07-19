@@ -1,6 +1,7 @@
 package com.saugat.ordermanagementsystem.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -8,11 +9,15 @@ import java.util.Objects;
 @Entity
 @Table(name = "product")
 public class Product extends AbstractEntity{
+
+    @NotNull(message = "Product name can not be null")
     @Column(name = "name", length = 100, nullable = false)
     private String name;
+    @NotNull(message = "Supplier can not be null")
     @ManyToOne
     @JoinColumn(name = "supplier_id", nullable = false)
     private Supplier supplier;
+    @NotNull(message = "Category can not be null")
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;

@@ -1,15 +1,20 @@
 package com.saugat.ordermanagementsystem.wrapper;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AddressVo extends AbstractEntityVo{
 
+    @NotNull(message = "Street can not be null")
     private String street;
     private String apt;
     private String building;
+    @NotNull(message = "City can not be null")
     private String city;
+    @NotNull(message = "State can not be null")
     private String state;
+    @NotNull(message = "Zip can not be null")
     private String zip;
     private String landmark;
     private String country;

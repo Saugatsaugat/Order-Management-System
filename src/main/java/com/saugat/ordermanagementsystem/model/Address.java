@@ -3,6 +3,7 @@ package com.saugat.ordermanagementsystem.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 
@@ -10,16 +11,20 @@ import java.util.Objects;
 @Table(name = "address")
 public class Address extends AbstractEntity {
 
+    @NotNull(message = "Street can not be null")
     @Column(name = "street", nullable = false)
     private String street;
     @Column(name = "apt", nullable = true, length = 20)
     private String apt;
     @Column(name = "building", nullable = true, length = 20)
     private String building;
+    @NotNull(message = "City can not be null")
     @Column(name = "city", nullable = false, length = 50)
     private String city;
+    @NotNull(message = "State can not be null")
     @Column(name = "state", nullable = false, length = 50)
     private String state;
+    @NotNull(message = "Zip can not be null")
     @Column(name = "zip", nullable = false, length = 10)
     private String zip;
     @Column(name = "landmark", nullable = true)

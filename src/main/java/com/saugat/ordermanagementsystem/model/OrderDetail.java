@@ -1,6 +1,7 @@
 package com.saugat.ordermanagementsystem.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -9,18 +10,23 @@ import java.util.Objects;
 @Table(name = "order_detail")
 public class OrderDetail extends AbstractEntity{
 
-    @Column(name = "unit_price")
+    @NotNull(message = "Unit price can not be null")
+    @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
-    @Column(name = "quantity")
+    @NotNull(message = "Quantity can not be null")
+    @Column(name = "quantity", nullable = false)
     private Long quantity;
-    @Column(name = "discount", columnDefinition = "Decimal(19, 2) default '0.00'")
+    @Column(name = "discount", nullable = true, columnDefinition = "Decimal(19, 2) default '0.00'")
     private BigDecimal discount = BigDecimal.ZERO;
+    @NotNull(message = "Product can not be null")
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     private Product product;
+    @NotNull(message = "Order can not be null")
     @OneToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private Order order;
+    @NotNull(message = "Address can not be null")
     @ManyToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
     private Address address;

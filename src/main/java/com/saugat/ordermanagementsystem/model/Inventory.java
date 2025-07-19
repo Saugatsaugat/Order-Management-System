@@ -1,6 +1,7 @@
 package com.saugat.ordermanagementsystem.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -10,13 +11,17 @@ import java.util.Objects;
 @Table(name="inventory")
 public class Inventory extends AbstractEntity{
 
+    @NotNull(message = "Product can not be null")
     @OneToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id", unique = true, nullable = false)
     private Product product;
+    @NotNull(message = "Quantity per unit can not be null")
     @Column(name = "quantity_per_unit", nullable = false)
     private Long quantityPerUnit;
+    @NotNull(message = "Unit price can not be null")
     @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
+    @NotNull(message = "Units in stock can not be null")
     @Column(name = "units_in_stock", nullable = false)
     private Long unitsInStock;
     @Column(name = "last_updated")

@@ -1,6 +1,7 @@
 package com.saugat.ordermanagementsystem.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 
@@ -12,6 +13,7 @@ public class Customer extends AbstractEntity {
     private String companyName;
     @Column(name = "contact_name")
     private String contactName;
+    @NotNull(message = "Customer phone can not be null")
     @Column(name = "phone", length = 15, unique = true, nullable = false)
     private String phone;
 

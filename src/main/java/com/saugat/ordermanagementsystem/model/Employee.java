@@ -1,6 +1,7 @@
 package com.saugat.ordermanagementsystem.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -9,6 +10,7 @@ import java.util.Objects;
 @Table(name = "employee")
 public class Employee extends AbstractEntity {
 
+    @NotNull(message = "Employee firstname can not be null")
     @Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
     @Column(name = "last_name", length = 50)
@@ -17,8 +19,10 @@ public class Employee extends AbstractEntity {
     private String title;
     @Column(name = "birth_date")
     private LocalDate birthDate;
+    @NotNull(message = "Employee hired date can not be null")
     @Column(name = "hire_date", nullable = false)
     private LocalDate hireDate;
+    @NotNull(message = "Employee phone number can not be null")
     @Column(name = "phone", length = 15, unique = true, nullable = false)
     private String phone;
 

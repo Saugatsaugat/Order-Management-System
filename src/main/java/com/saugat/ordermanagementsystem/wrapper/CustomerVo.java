@@ -1,5 +1,6 @@
 package com.saugat.ordermanagementsystem.wrapper;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -7,18 +8,17 @@ public class CustomerVo extends AbstractEntityVo {
 
     private String companyName;
     private String contactName;
+    @NotNull(message = "Street can not be null")
     private String phone;
-    private AddressVo address;
 
     public CustomerVo() {
     }
 
-    public CustomerVo(Long id, String companyName, String contactName, String phone, AddressVo address) {
+    public CustomerVo(Long id, String companyName, String contactName, String phone) {
         super.setId(id);
         this.companyName = companyName;
         this.contactName = contactName;
         this.phone = phone;
-        this.address = address;
     }
 
     public String getCompanyName() {
@@ -43,13 +43,5 @@ public class CustomerVo extends AbstractEntityVo {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public AddressVo getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressVo address) {
-        this.address = address;
     }
 }

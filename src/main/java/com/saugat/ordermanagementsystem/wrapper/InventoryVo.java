@@ -1,5 +1,6 @@
 package com.saugat.ordermanagementsystem.wrapper;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -7,9 +8,14 @@ import java.time.LocalDateTime;
 
 @Component
 public class InventoryVo extends AbstractEntityVo{
+
+    @NotNull(message = "Product can not be null")
     private ProductVo product;
+    @NotNull(message = "Quantity per unit can not be null")
     private Long quantityPerUnit;
+    @NotNull(message = "Unit price can not be null")
     private BigDecimal unitPrice;
+    @NotNull(message = "Unit in stock can not be null")
     private Long unitsInStock;
     private LocalDateTime lastUpdated;
 

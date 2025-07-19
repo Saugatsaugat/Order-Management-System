@@ -2,6 +2,7 @@ package com.saugat.ordermanagementsystem.model;
 
 import com.saugat.ordermanagementsystem.enums.ProductRateChangeEnum;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,15 +12,17 @@ import java.util.Objects;
 @Table(name = "inventory_log")
 public class InventoryLog extends AbstractEntity{
 
-    @Column(name = "product_id")
+    @NotNull(message = "Product can not be null")
+    @Column(name = "product_id", nullable = false)
     private Long productId;
-    @Column(name="change_amount")
+    @NotNull(message = "Change amount can not be null")
+    @Column(name="change_amount", nullable = false)
     private BigDecimal changeAmount;
-
+    @NotNull(message = "Change reason can not be null")
     @Enumerated(EnumType.STRING)
-    @Column(name = "change_reason")
+    @Column(name = "change_reason", nullable = false)
     private ProductRateChangeEnum changeReason;
-
+    @NotNull(message = "Log date time can not be null")
     @Column(name = "log_datetime", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime logDateTime;
 

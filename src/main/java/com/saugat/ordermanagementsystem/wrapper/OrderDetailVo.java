@@ -1,5 +1,6 @@
 package com.saugat.ordermanagementsystem.wrapper;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -7,11 +8,16 @@ import java.math.BigDecimal;
 @Component
 public class OrderDetailVo extends AbstractEntityVo {
 
+    @NotNull(message = "Unit price can not be null")
     private BigDecimal unitPrice;
+    @NotNull(message = "Quantity can not be null")
     private Long quantity;
     private BigDecimal discount;
+    @NotNull(message = "Product can not be null")
     private ProductVo product;
+    @NotNull(message = "Order can not be null")
     private OrderVo order;
+    @NotNull(message = "Address can not be null")
     private AddressVo address;
 
     public OrderDetailVo() {

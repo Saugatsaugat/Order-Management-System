@@ -3,6 +3,7 @@ package com.saugat.ordermanagementsystem.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 
@@ -10,6 +11,7 @@ import java.util.Objects;
 @Table(name="category")
 public class Category extends AbstractEntity{
 
+    @NotNull(message = "Category name can not be null")
     @Column(name="name", nullable = false)
     private String name;
 

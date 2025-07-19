@@ -1,18 +1,22 @@
 package com.saugat.ordermanagementsystem.wrapper;
 
-import com.saugat.ordermanagementsystem.model.Address;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 @Component
 public class EmployeeVo extends AbstractEntityVo {
+
+    @NotNull(message = "Employee firstname can not be null")
     private String firstName;
     private String lastName;
     private String title;
     private LocalDate birthDate;
+    @NotNull(message = "Employee hired date can not be null")
     private LocalDate hireDate;
     private AddressVo address;
+    @NotNull(message = "Employee phone number can not be null")
     private String phone;
 
     public EmployeeVo() {

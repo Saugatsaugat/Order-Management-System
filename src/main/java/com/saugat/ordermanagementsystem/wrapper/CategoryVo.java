@@ -1,9 +1,12 @@
 package com.saugat.ordermanagementsystem.wrapper;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CategoryVo extends AbstractEntityVo{
+
+    @NotNull(message = "Category name can not be null")
     private String name;
     private String description;
 

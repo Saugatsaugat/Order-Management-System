@@ -1,16 +1,19 @@
 package com.saugat.ordermanagementsystem.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "customer_address")
 public class CustomerAddress extends AbstractEntity {
 
+    @NotNull(message = "Customer can not be null")
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+    @NotNull(message = "Address can not be null")
     @ManyToOne
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
     public CustomerAddress() {
