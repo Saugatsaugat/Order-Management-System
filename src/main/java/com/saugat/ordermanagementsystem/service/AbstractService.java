@@ -6,6 +6,7 @@ import com.saugat.ordermanagementsystem.model.IPersistentEntity;
 import com.saugat.ordermanagementsystem.repo.AbstractRepo;
 import com.saugat.ordermanagementsystem.resource.AbstractResponse;
 import com.saugat.ordermanagementsystem.wrapper.IPersistentEntityVo;
+import com.saugat.ordermanagementsystem.wrapper.api.ApiResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -17,26 +18,26 @@ public abstract class AbstractService<E extends IPersistentEntity<Long>, W exten
     public abstract IBaseMapper<E, W> getMapper();
 
     @Override
-    public ResponseEntity<String> get(Long id){
+    public ResponseEntity<ApiResponse<W>> get(Long id){
         E obj = getRepository().findById(id).orElseThrow(() -> new CustomException(getServiceName() + " not found"));
-        return responseBuilder(true,"Success", getMapper().toDto(obj));
+        return responseBuilder(true,"success", getMapper().toDto(obj));
     }
 
     @Override
-    public ResponseEntity<String> getAll(){
+    public ResponseEntity<ApiResponse<List<W>>> getAll(){
         List<E> obj = getRepository().findAll();
-        return responseBuilder(true, "Success", getMapper().toDtos(obj));
+        return responseBuilder(true, "success", getMapper().toDtos(obj));
     }
 
     @Override
-    public ResponseEntity<String> create(W vo){
+    public ResponseEntity<ApiResponse<W>> create(W vo){
         E obj = (E) getMapper().fromDto(vo);
         getRepository().save(obj);
-        return responseBuilder(true, "Success", getMapper().toDto(obj));
+        return responseBuilder(true, "success", getMapper().toDto(obj));
     }
 
     @Override
-    public ResponseEntity<String> edit(W vo){
+    public ResponseEntity<ApiResponse<W>> edit(W vo){
         E existingE = getRepository().findById((Long)vo.getId()).orElseThrow(() -> new CustomException(getServiceName() + " not found"));
         E obj = (E) getMapper().fromDto(vo);
         obj.setId(existingE.getId());
@@ -45,9 +46,9 @@ public abstract class AbstractService<E extends IPersistentEntity<Long>, W exten
     }
 
     @Override
-    public ResponseEntity<String> delete(Long id){
+    public ResponseEntity<ApiResponse<Object>> delete(Long id){
         E existingE = getRepository().findById(id).orElseThrow(() -> new CustomException(getServiceName() + " not found"));
         getRepository().delete(existingE);
-        return responseBuilder(true, "Success", null);
+        return responseBuilder(true, "success", null);
     }
 }
