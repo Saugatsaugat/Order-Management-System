@@ -17,7 +17,7 @@ public class EmployeeController extends AbstractController<EmployeeVo> {
 
     @Override
     protected IService<EmployeeVo> getService() {
-        return null;
+        return service;
     }
 
     @GetMapping("/ping")
