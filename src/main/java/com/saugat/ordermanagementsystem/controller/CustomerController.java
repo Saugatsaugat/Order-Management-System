@@ -17,7 +17,7 @@ public class CustomerController extends AbstractController<CustomerVo> {
 
     @Override
     protected IService<CustomerVo> getService() {
-        return null;
+        return service;
     }
 
     @GetMapping("/ping")
