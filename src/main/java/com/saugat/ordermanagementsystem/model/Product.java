@@ -13,10 +13,12 @@ public class Product extends AbstractEntity{
     @NotNull(message = "Product name can not be null")
     @Column(name = "name", length = 100, nullable = false)
     private String name;
+
     @NotNull(message = "Supplier can not be null")
     @ManyToOne
     @JoinColumn(name = "supplier_id", nullable = false)
     private Supplier supplier;
+
     @NotNull(message = "Category can not be null")
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)

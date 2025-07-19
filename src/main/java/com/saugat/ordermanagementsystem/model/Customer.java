@@ -11,8 +11,10 @@ public class Customer extends AbstractEntity {
 
     @Column(name = "company_name")
     private String companyName;
+
     @Column(name = "contact_name")
     private String contactName;
+
     @NotNull(message = "Customer phone can not be null")
     @Column(name = "phone", length = 15, unique = true, nullable = false)
     private String phone;

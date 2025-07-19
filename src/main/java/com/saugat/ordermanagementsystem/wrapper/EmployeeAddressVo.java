@@ -8,6 +8,7 @@ public class EmployeeAddressVo extends AbstractEntityVo {
 
     @NotNull(message = "Employee can not be null")
     private EmployeeVo employee;
+
     @NotNull(message = "Address can not be null")
     private AddressVo address;
 

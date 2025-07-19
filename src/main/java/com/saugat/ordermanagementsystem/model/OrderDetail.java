@@ -13,19 +13,24 @@ public class OrderDetail extends AbstractEntity{
     @NotNull(message = "Unit price can not be null")
     @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
+
     @NotNull(message = "Quantity can not be null")
     @Column(name = "quantity", nullable = false)
     private Long quantity;
+
     @Column(name = "discount", nullable = true, columnDefinition = "Decimal(19, 2) default '0.00'")
     private BigDecimal discount = BigDecimal.ZERO;
+
     @NotNull(message = "Product can not be null")
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     private Product product;
+
     @NotNull(message = "Order can not be null")
     @OneToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private Order order;
+
     @NotNull(message = "Address can not be null")
     @ManyToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)

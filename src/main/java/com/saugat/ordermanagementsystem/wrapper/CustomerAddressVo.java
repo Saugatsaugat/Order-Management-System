@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 public class CustomerAddressVo extends AbstractEntityVo{
     @NotNull(message = "Customer can not be null")
     private CustomerVo customer;
+
     @NotNull(message = "Address can not be null")
     private AddressVo address;
 

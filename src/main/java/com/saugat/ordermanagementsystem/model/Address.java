@@ -14,21 +14,28 @@ public class Address extends AbstractEntity {
     @NotNull(message = "Street can not be null")
     @Column(name = "street", nullable = false)
     private String street;
+
     @Column(name = "apt", nullable = true, length = 20)
     private String apt;
+
     @Column(name = "building", nullable = true, length = 20)
     private String building;
+
     @NotNull(message = "City can not be null")
     @Column(name = "city", nullable = false, length = 50)
     private String city;
+
     @NotNull(message = "State can not be null")
     @Column(name = "state", nullable = false, length = 50)
     private String state;
+
     @NotNull(message = "Zip can not be null")
     @Column(name = "zip", nullable = false, length = 10)
     private String zip;
+
     @Column(name = "landmark", nullable = true)
     private String landmark;
+
     @Column(name = "country", nullable = true, columnDefinition = "DEFAULT 'USA' ", length = 100)
     private String country;
 

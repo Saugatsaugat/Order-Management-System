@@ -8,8 +8,10 @@ import org.springframework.stereotype.Component;
 public class ProductVo extends AbstractEntityVo{
     @NotNull(message = "Product name can not be null")
     private String name;
+
     @NotNull(message = "Supplier can not be null")
     private Supplier supplier;
+
     @NotNull(message = "Caategory can not be null")
     private CategoryVo category;
 

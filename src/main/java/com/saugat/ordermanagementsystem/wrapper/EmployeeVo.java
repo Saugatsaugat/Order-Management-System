@@ -10,12 +10,18 @@ public class EmployeeVo extends AbstractEntityVo {
 
     @NotNull(message = "Employee firstname can not be null")
     private String firstName;
+
     private String lastName;
+
     private String title;
+
     private LocalDate birthDate;
+
     @NotNull(message = "Employee hired date can not be null")
     private LocalDate hireDate;
+
     private AddressVo address;
+
     @NotNull(message = "Employee phone number can not be null")
     private String phone;
 

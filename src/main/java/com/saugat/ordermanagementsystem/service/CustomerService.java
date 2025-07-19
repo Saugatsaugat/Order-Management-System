@@ -38,10 +38,6 @@ public class CustomerService extends AbstractService<Customer, CustomerVo> {
 
     @Override
     public ResponseEntity<ApiResponse<CustomerVo>> create(@RequestBody CustomerVo vo){
-        if(vo.getAddress() == null || vo.getAddress().getId() == null){
-            throw new CustomException("Missing values for address");
-        }
-
         Customer c = getRepository().save(getMapper().fromDto(vo));
         return responseBuilder(true, "Customer Updated Successfully", getMapper().toDto(c));
     }

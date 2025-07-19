@@ -8,6 +8,7 @@ public class ShipperVo extends AbstractEntityVo {
 
     @NotNull(message = "Company name can not be null")
     private String companyName;
+
     @NotNull(message = "Shipper phone number can not be null")
     private String phone;
 

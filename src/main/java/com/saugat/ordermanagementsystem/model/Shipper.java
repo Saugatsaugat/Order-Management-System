@@ -14,6 +14,7 @@ public class Shipper extends AbstractEntity {
     @NotNull(message = "Company name can not be null")
     @Column(name = "company_name", nullable = false)
     private String companyName;
+
     @NotNull(message = "Shipper Phone number can not be null")
     @Column(name = "phone", unique = true, nullable = false)
     private String phone;

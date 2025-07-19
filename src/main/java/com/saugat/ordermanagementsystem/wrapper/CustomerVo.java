@@ -7,7 +7,9 @@ import org.springframework.stereotype.Component;
 public class CustomerVo extends AbstractEntityVo {
 
     private String companyName;
+
     private String contactName;
+
     @NotNull(message = "Street can not be null")
     private String phone;
 

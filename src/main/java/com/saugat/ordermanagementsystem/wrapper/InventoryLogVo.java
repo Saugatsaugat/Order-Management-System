@@ -14,11 +14,14 @@ public class InventoryLogVo extends AbstractEntityVo{
 
     @NotNull(message = "Product can not be null")
     private Long productId;
+
     @NotNull(message = "Change amount can not be null")
     private BigDecimal changeAmount;
+
     @NotNull(message = "Change reason can not be null")
     @Enumerated(EnumType.STRING)
     private ProductRateChangeEnum changeReason;
+
     @NotNull(message = "Log date time can not be null")
     private LocalDateTime logDateTime;
 

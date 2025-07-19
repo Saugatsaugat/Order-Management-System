@@ -10,13 +10,18 @@ public class OrderDetailVo extends AbstractEntityVo {
 
     @NotNull(message = "Unit price can not be null")
     private BigDecimal unitPrice;
+
     @NotNull(message = "Quantity can not be null")
     private Long quantity;
+
     private BigDecimal discount;
+
     @NotNull(message = "Product can not be null")
     private ProductVo product;
+
     @NotNull(message = "Order can not be null")
     private OrderVo order;
+
     @NotNull(message = "Address can not be null")
     private AddressVo address;
 

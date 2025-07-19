@@ -14,6 +14,7 @@ public class EmployeeAddress extends AbstractEntity{
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
+
     @NotNull(message = "Address can not be null")
     @ManyToOne
     @JoinColumn(name = "address_id", nullable = false)

@@ -8,10 +8,14 @@ public class SupplierVo extends AbstractEntityVo{
 
     @NotNull(message = "Company name can not be null")
     private String companyName;
+
     private String contactName;
+
     @NotNull(message = "Supplier phone number can not be null")
     private String phone;
+
     private String country;
+
     @NotNull(message = "Address name can not be null")
     private AddressVo address;
 

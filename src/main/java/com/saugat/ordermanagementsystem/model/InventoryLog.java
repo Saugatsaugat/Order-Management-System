@@ -15,13 +15,16 @@ public class InventoryLog extends AbstractEntity{
     @NotNull(message = "Product can not be null")
     @Column(name = "product_id", nullable = false)
     private Long productId;
+
     @NotNull(message = "Change amount can not be null")
     @Column(name="change_amount", nullable = false)
     private BigDecimal changeAmount;
+
     @NotNull(message = "Change reason can not be null")
     @Enumerated(EnumType.STRING)
     @Column(name = "change_reason", nullable = false)
     private ProductRateChangeEnum changeReason;
+
     @NotNull(message = "Log date time can not be null")
     @Column(name = "log_datetime", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime logDateTime;

@@ -8,6 +8,7 @@ public class CategoryVo extends AbstractEntityVo{
 
     @NotNull(message = "Category name can not be null")
     private String name;
+
     private String description;
 
     public CategoryVo() {

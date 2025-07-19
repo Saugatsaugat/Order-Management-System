@@ -15,15 +15,19 @@ public class Inventory extends AbstractEntity{
     @OneToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id", unique = true, nullable = false)
     private Product product;
+
     @NotNull(message = "Quantity per unit can not be null")
     @Column(name = "quantity_per_unit", nullable = false)
     private Long quantityPerUnit;
+
     @NotNull(message = "Unit price can not be null")
     @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
+
     @NotNull(message = "Units in stock can not be null")
     @Column(name = "units_in_stock", nullable = false)
     private Long unitsInStock;
+
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated;
 
