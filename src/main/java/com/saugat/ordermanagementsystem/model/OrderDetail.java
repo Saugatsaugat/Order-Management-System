@@ -36,17 +36,22 @@ public class OrderDetail extends AbstractEntity{
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
     private Address address;
 
+    @ManyToOne
+    @JoinColumn(name = "shipper_id", referencedColumnName = "id")
+    private Shipper shipper;
+
 
     public OrderDetail() {
     }
 
-    public OrderDetail(BigDecimal unitPrice, Long quantity, BigDecimal discount, Product product, Order order, Address address) {
+    public OrderDetail(BigDecimal unitPrice, Long quantity, BigDecimal discount, Product product, Order order, Address address, Shipper shipper) {
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.discount = discount;
         this.product = product;
         this.order = order;
         this.address = address;
+        this.shipper = shipper;
     }
 
     public BigDecimal getUnitPrice() {
@@ -97,16 +102,24 @@ public class OrderDetail extends AbstractEntity{
         this.address = address;
     }
 
+    public Shipper getShipper() {
+        return shipper;
+    }
+
+    public void setShipper(Shipper shipper) {
+        this.shipper = shipper;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         OrderDetail that = (OrderDetail) o;
-        return Objects.equals(unitPrice, that.unitPrice) && Objects.equals(quantity, that.quantity) && Objects.equals(discount, that.discount) && Objects.equals(product, that.product) && Objects.equals(order, that.order) && Objects.equals(address, that.address);
+        return Objects.equals(unitPrice, that.unitPrice) && Objects.equals(quantity, that.quantity) && Objects.equals(discount, that.discount) && Objects.equals(product, that.product) && Objects.equals(order, that.order) && Objects.equals(address, that.address) && Objects.equals(shipper, that.shipper);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(unitPrice, quantity, discount, product, order, address);
+        return Objects.hash(unitPrice, quantity, discount, product, order, address, shipper);
     }
 
     @Override
