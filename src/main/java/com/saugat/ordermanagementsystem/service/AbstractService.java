@@ -20,20 +20,20 @@ public abstract class AbstractService<E extends IPersistentEntity<Long>, W exten
     @Override
     public ResponseEntity<ApiResponse<W>> get(Long id){
         E obj = getRepository().findById(id).orElseThrow(() -> new CustomException(getServiceName() + " not found"));
-        return responseBuilder(true,"success", getMapper().toDto(obj));
+        return responseBuilder(true,"Data fetched successfully", getMapper().toDto(obj));
     }
 
     @Override
     public ResponseEntity<ApiResponse<List<W>>> getAll(){
         List<E> obj = getRepository().findAll();
-        return responseBuilder(true, "success", getMapper().toDtos(obj));
+        return responseBuilder(true, "Data fetched successfully", getMapper().toDtos(obj));
     }
 
     @Override
     public ResponseEntity<ApiResponse<W>> create(W vo){
         E obj = (E) getMapper().fromDto(vo);
         getRepository().save(obj);
-        return responseBuilder(true, "success", getMapper().toDto(obj));
+        return responseBuilder(true, "Data created successfully", getMapper().toDto(obj));
     }
 
     @Override
@@ -42,13 +42,13 @@ public abstract class AbstractService<E extends IPersistentEntity<Long>, W exten
         E obj = (E) getMapper().fromDto(vo);
         obj.setId(existingE.getId());
         getRepository().save(obj);
-        return responseBuilder(true, "success", getMapper().toDto(obj));
+        return responseBuilder(true, "Data updated successfully", getMapper().toDto(obj));
     }
 
     @Override
     public ResponseEntity<ApiResponse<Object>> delete(Long id){
         E existingE = getRepository().findById(id).orElseThrow(() -> new CustomException(getServiceName() + " not found"));
         getRepository().delete(existingE);
-        return responseBuilder(true, "success", null);
+        return responseBuilder(true, "Data deleted successfully", null);
     }
 }
