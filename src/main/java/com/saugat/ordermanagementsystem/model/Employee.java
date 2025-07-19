@@ -9,7 +9,7 @@ import java.util.Objects;
 @Table(name = "employee")
 public class Employee extends AbstractEntity {
 
-    @Column(name = "first_name", length = 50)
+    @Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
     @Column(name = "last_name", length = 50)
     private String lastName;
@@ -17,35 +17,30 @@ public class Employee extends AbstractEntity {
     private String title;
     @Column(name = "birth_date")
     private LocalDate birthDate;
-    @Column(name = "hire_date")
+    @Column(name = "hire_date", nullable = false)
     private LocalDate hireDate;
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
-    @Column(name = "phone", length = 15, unique = true)
+    @Column(name = "phone", length = 15, unique = true, nullable = false)
     private String phone;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String title, LocalDate birthDate, LocalDate hireDate, Address address, String phone) {
+    public Employee(String firstName, String lastName, String title, LocalDate birthDate, LocalDate hireDate, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
         this.birthDate = birthDate;
         this.hireDate = hireDate;
-        this.address = address;
         this.phone = phone;
     }
 
-    public Employee(Long id, String firstName, String lastName, String title, LocalDate birthDate, LocalDate hireDate, Address address, String phone) {
+    public Employee(Long id, String firstName, String lastName, String title, LocalDate birthDate, LocalDate hireDate, String phone) {
         super.setId(id);
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
         this.birthDate = birthDate;
         this.hireDate = hireDate;
-        this.address = address;
         this.phone = phone;
     }
 
@@ -89,14 +84,6 @@ public class Employee extends AbstractEntity {
         this.hireDate = hireDate;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -109,12 +96,12 @@ public class Employee extends AbstractEntity {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(title, employee.title) && Objects.equals(birthDate, employee.birthDate) && Objects.equals(hireDate, employee.hireDate) && Objects.equals(address, employee.address) && Objects.equals(phone, employee.phone);
+        return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(title, employee.title) && Objects.equals(birthDate, employee.birthDate) && Objects.equals(hireDate, employee.hireDate) && Objects.equals(phone, employee.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, title, birthDate, hireDate, address, phone);
+        return Objects.hash(firstName, lastName, title, birthDate, hireDate, phone);
     }
 
     @Override

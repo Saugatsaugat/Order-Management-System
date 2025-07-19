@@ -1,9 +1,6 @@
 package com.saugat.ordermanagementsystem.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -15,19 +12,16 @@ public class Customer extends AbstractEntity {
     private String companyName;
     @Column(name = "contact_name")
     private String contactName;
-    @Column(name = "phone", length = 15, unique = true)
+    @Column(name = "phone", length = 15, unique = true, nullable = false)
     private String phone;
-    @OneToOne
-    private Address address;
 
     public Customer() {
     }
 
-    public Customer(String companyName, String contactName, String phone, Address address) {
+    public Customer(String companyName, String contactName, String phone) {
         this.companyName = companyName;
         this.contactName = contactName;
         this.phone = phone;
-        this.address = address;
     }
 
     public Customer(Long id, String companyName, String contactName, String phone, Address address) {
@@ -35,7 +29,6 @@ public class Customer extends AbstractEntity {
         this.companyName = companyName;
         this.contactName = contactName;
         this.phone = phone;
-        this.address = address;
     }
 
     public String getCompanyName() {
@@ -62,24 +55,16 @@ public class Customer extends AbstractEntity {
         this.phone = phone;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return Objects.equals(companyName, customer.companyName) && Objects.equals(contactName, customer.contactName) && Objects.equals(phone, customer.phone) && Objects.equals(address, customer.address);
+        return Objects.equals(companyName, customer.companyName) && Objects.equals(contactName, customer.contactName) && Objects.equals(phone, customer.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(companyName, contactName, phone, address);
+        return Objects.hash(companyName, contactName, phone);
     }
 
     @Override

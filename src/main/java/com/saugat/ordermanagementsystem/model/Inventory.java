@@ -3,7 +3,7 @@ package com.saugat.ordermanagementsystem.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -11,21 +11,21 @@ import java.util.Objects;
 public class Inventory extends AbstractEntity{
 
     @OneToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id", unique = true, nullable = false)
     private Product product;
-    @Column(name = "quantity_per_unit")
+    @Column(name = "quantity_per_unit", nullable = false)
     private Long quantityPerUnit;
-    @Column(name = "unit_price")
+    @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
-    @Column(name = "units_in_stock")
+    @Column(name = "units_in_stock", nullable = false)
     private Long unitsInStock;
     @Column(name = "last_updated")
-    private LocalTime lastUpdated;
+    private LocalDateTime lastUpdated;
 
     public Inventory() {
     }
 
-    public Inventory(Product product, Long quantityPerUnit, BigDecimal unitPrice, Long unitsInStock, LocalTime lastUpdated) {
+    public Inventory(Product product, Long quantityPerUnit, BigDecimal unitPrice, Long unitsInStock, LocalDateTime lastUpdated) {
         this.product = product;
         this.quantityPerUnit = quantityPerUnit;
         this.unitPrice = unitPrice;
@@ -65,11 +65,11 @@ public class Inventory extends AbstractEntity{
         this.unitsInStock = unitsInStock;
     }
 
-    public LocalTime getLastUpdated() {
+    public LocalDateTime getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(LocalTime lastUpdated) {
+    public void setLastUpdated(LocalDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 

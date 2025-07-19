@@ -24,7 +24,7 @@ public class Address extends AbstractEntity {
     private String zip;
     @Column(name = "landmark", nullable = true)
     private String landmark;
-    @Column(name = "country", nullable = false, length = 100)
+    @Column(name = "country", nullable = true, columnDefinition = "DEFAULT 'USA' ", length = 100)
     private String country;
 
     public Address() {

@@ -2,26 +2,26 @@ package com.saugat.ordermanagementsystem.model;
 
 import jakarta.persistence.MappedSuperclass;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public abstract class AbstractEntity extends AbstractPKEntity{
-    private LocalTime createdAt;
-    private LocalTime modifiedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
 
-    public LocalTime getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalTime createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalTime getModifiedAt() {
+    public LocalDateTime getModifiedAt() {
         return modifiedAt;
     }
 
-    public void setModifiedAt(LocalTime modifiedAt) {
+    public void setModifiedAt(LocalDateTime modifiedAt) {
         this.modifiedAt = modifiedAt;
     }
 }

@@ -8,13 +8,13 @@ import java.util.Objects;
 @Entity
 @Table(name = "product")
 public class Product extends AbstractEntity{
-    @Column(name = "name", length = 100)
+    @Column(name = "name", length = 100, nullable = false)
     private String name;
     @ManyToOne
-    @JoinColumn(name = "supplier_id")
+    @JoinColumn(name = "supplier_id", nullable = false)
     private Supplier supplier;
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
     public Product() {

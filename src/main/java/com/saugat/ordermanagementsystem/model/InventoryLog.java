@@ -4,6 +4,7 @@ import com.saugat.ordermanagementsystem.enums.ProductRateChangeEnum;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -19,13 +20,17 @@ public class InventoryLog extends AbstractEntity{
     @Column(name = "change_reason")
     private ProductRateChangeEnum changeReason;
 
+    @Column(name = "log_datetime", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime logDateTime;
+
     public InventoryLog() {
     }
 
-    public InventoryLog(Long productId, BigDecimal changeAmount, ProductRateChangeEnum changeReason) {
+    public InventoryLog(Long productId, BigDecimal changeAmount, ProductRateChangeEnum changeReason, LocalDateTime logDateTime) {
         this.productId = productId;
         this.changeAmount = changeAmount;
         this.changeReason = changeReason;
+        this.logDateTime = logDateTime;
     }
 
     public Long getProductId() {
@@ -52,16 +57,24 @@ public class InventoryLog extends AbstractEntity{
         this.changeReason = changeReason;
     }
 
+    public LocalDateTime getLogDateTime() {
+        return logDateTime;
+    }
+
+    public void setLogDateTime(LocalDateTime logDateTime) {
+        this.logDateTime = logDateTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         InventoryLog that = (InventoryLog) o;
-        return Objects.equals(productId, that.productId) && Objects.equals(changeAmount, that.changeAmount) && changeReason == that.changeReason;
+        return Objects.equals(productId, that.productId) && Objects.equals(changeAmount, that.changeAmount) && changeReason == that.changeReason && Objects.equals(logDateTime, that.logDateTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, changeAmount, changeReason);
+        return Objects.hash(productId, changeAmount, changeReason, logDateTime);
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.saugat.ordermanagementsystem.wrapper;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Component
 public class InventoryVo extends AbstractEntityVo{
@@ -11,12 +11,12 @@ public class InventoryVo extends AbstractEntityVo{
     private Long quantityPerUnit;
     private BigDecimal unitPrice;
     private Long unitsInStock;
-    private LocalTime lastUpdated;
+    private LocalDateTime lastUpdated;
 
     public InventoryVo() {
     }
 
-    public InventoryVo(ProductVo product, Long quantityPerUnit, BigDecimal unitPrice, Long unitsInStock, LocalTime lastUpdated) {
+    public InventoryVo(ProductVo product, Long quantityPerUnit, BigDecimal unitPrice, Long unitsInStock, LocalDateTime lastUpdated) {
         this.product = product;
         this.quantityPerUnit = quantityPerUnit;
         this.unitPrice = unitPrice;
@@ -56,11 +56,11 @@ public class InventoryVo extends AbstractEntityVo{
         this.unitsInStock = unitsInStock;
     }
 
-    public LocalTime getLastUpdated() {
+    public LocalDateTime getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(LocalTime lastUpdated) {
+    public void setLastUpdated(LocalDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 }
