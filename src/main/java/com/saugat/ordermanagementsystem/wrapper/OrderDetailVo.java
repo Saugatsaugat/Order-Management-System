@@ -12,17 +12,18 @@ public class OrderDetailVo extends AbstractEntityVo {
     private BigDecimal discount;
     private ProductVo product;
     private OrderVo order;
+    private AddressVo address;
 
     public OrderDetailVo() {
     }
 
-    public OrderDetailVo(Long id, BigDecimal unitPrice, Long quantity, BigDecimal discount, ProductVo product, OrderVo order) {
-        super.setId(id);
+    public OrderDetailVo(BigDecimal unitPrice, Long quantity, BigDecimal discount, ProductVo product, OrderVo order, AddressVo address) {
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.discount = discount;
         this.product = product;
         this.order = order;
+        this.address = address;
     }
 
     public BigDecimal getUnitPrice() {
@@ -63,5 +64,13 @@ public class OrderDetailVo extends AbstractEntityVo {
 
     public void setOrder(OrderVo order) {
         this.order = order;
+    }
+
+    public AddressVo getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressVo address) {
+        this.address = address;
     }
 }

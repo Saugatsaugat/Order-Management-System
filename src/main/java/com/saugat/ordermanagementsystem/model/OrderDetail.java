@@ -16,30 +16,26 @@ public class OrderDetail extends AbstractEntity{
     @Column(name = "discount", columnDefinition = "Decimal(19, 2) default '0.00'")
     private BigDecimal discount = BigDecimal.ZERO;
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     private Product product;
-    @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private Order order;
+    @ManyToOne
+    @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
+    private Address address;
+
 
     public OrderDetail() {
     }
 
-    public OrderDetail(BigDecimal unitPrice, Long quantity, BigDecimal discount, Product product, Order order) {
+    public OrderDetail(BigDecimal unitPrice, Long quantity, BigDecimal discount, Product product, Order order, Address address) {
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.discount = discount;
         this.product = product;
         this.order = order;
-    }
-
-    public OrderDetail(Long id, BigDecimal unitPrice, Long quantity, BigDecimal discount, Product product, Order order) {
-        super.setId(id);
-        this.unitPrice = unitPrice;
-        this.quantity = quantity;
-        this.discount = discount;
-        this.product = product;
-        this.order = order;
+        this.address = address;
     }
 
     public BigDecimal getUnitPrice() {
@@ -82,16 +78,24 @@ public class OrderDetail extends AbstractEntity{
         this.order = order;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         OrderDetail that = (OrderDetail) o;
-        return Objects.equals(unitPrice, that.unitPrice) && Objects.equals(quantity, that.quantity) && Objects.equals(discount, that.discount) && Objects.equals(product, that.product) && Objects.equals(order, that.order);
+        return Objects.equals(unitPrice, that.unitPrice) && Objects.equals(quantity, that.quantity) && Objects.equals(discount, that.discount) && Objects.equals(product, that.product) && Objects.equals(order, that.order) && Objects.equals(address, that.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(unitPrice, quantity, discount, product, order);
+        return Objects.hash(unitPrice, quantity, discount, product, order, address);
     }
 
     @Override

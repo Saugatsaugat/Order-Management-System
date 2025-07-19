@@ -9,7 +9,7 @@ import java.util.Objects;
 @Table(name = "orders")
 public class Order extends AbstractEntity{
 
-    @Column(name = "order_date")
+    @Column(name = "order_date", nullable = false)
     private LocalDate orderDate;
     @Column(name = "require_date")
     private LocalDate requireDate;
@@ -17,38 +17,19 @@ public class Order extends AbstractEntity{
     private LocalDate shippedDate;
     @Column(name = "ship_via")
     private String shipVia;
-    @OneToOne
-    @JoinColumn(name = "ship_address_id", referencedColumnName = "id")
-    private Address shipAddress;
     @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    @JoinColumn(name = "customer_id", nullable = false, referencedColumnName = "id")
     private Customer customer;
-    @ManyToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
-    private Employee employee;
 
     public Order() {
     }
 
-    public Order(LocalDate orderDate, LocalDate requireDate, LocalDate shippedDate, String shipVia, Address shipAddress, Customer customer, Employee employee) {
+    public Order(LocalDate orderDate, LocalDate requireDate, LocalDate shippedDate, String shipVia, Customer customer) {
         this.orderDate = orderDate;
         this.requireDate = requireDate;
         this.shippedDate = shippedDate;
         this.shipVia = shipVia;
-        this.shipAddress = shipAddress;
         this.customer = customer;
-        this.employee = employee;
-    }
-
-    public Order(Long id, LocalDate orderDate, LocalDate requireDate, LocalDate shippedDate, String shipVia, Address shipAddress, Customer customer, Employee employee) {
-        super.setId(id);
-        this.orderDate = orderDate;
-        this.requireDate = requireDate;
-        this.shippedDate = shippedDate;
-        this.shipVia = shipVia;
-        this.shipAddress = shipAddress;
-        this.customer = customer;
-        this.employee = employee;
     }
 
     public LocalDate getOrderDate() {
@@ -83,14 +64,6 @@ public class Order extends AbstractEntity{
         this.shipVia = shipVia;
     }
 
-    public Address getShipAddress() {
-        return shipAddress;
-    }
-
-    public void setShipAddress(Address shipAddress) {
-        this.shipAddress = shipAddress;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
@@ -99,25 +72,16 @@ public class Order extends AbstractEntity{
         this.customer = customer;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
     @Override
     public boolean equals(Object o) {
-
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(orderDate, order.orderDate) && Objects.equals(requireDate, order.requireDate) && Objects.equals(shippedDate, order.shippedDate) && Objects.equals(shipVia, order.shipVia) && Objects.equals(shipAddress, order.shipAddress) && Objects.equals(customer, order.customer) && Objects.equals(employee, order.employee);
+        return Objects.equals(orderDate, order.orderDate) && Objects.equals(requireDate, order.requireDate) && Objects.equals(shippedDate, order.shippedDate) && Objects.equals(shipVia, order.shipVia) && Objects.equals(customer, order.customer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderDate, requireDate, shippedDate, shipVia, shipAddress, customer, employee);
+        return Objects.hash(orderDate, requireDate, shippedDate, shipVia, customer);
     }
 
     @Override
