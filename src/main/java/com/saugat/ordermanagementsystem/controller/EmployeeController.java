@@ -4,6 +4,7 @@ import com.saugat.ordermanagementsystem.service.EmployeeService;
 import com.saugat.ordermanagementsystem.service.IService;
 import com.saugat.ordermanagementsystem.wrapper.EmployeeVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,5 +18,10 @@ public class EmployeeController extends AbstractController<EmployeeVo> {
     @Override
     protected IService<EmployeeVo> getService() {
         return null;
+    }
+
+    @GetMapping("/ping")
+    public String pingMe(){
+        return "Employee";
     }
 }

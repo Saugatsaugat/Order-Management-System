@@ -4,6 +4,7 @@ import com.saugat.ordermanagementsystem.service.IService;
 import com.saugat.ordermanagementsystem.service.ShipperService;
 import com.saugat.ordermanagementsystem.wrapper.ShipperVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,5 +18,9 @@ public class ShipperController extends AbstractController<ShipperVo> {
     @Override
     protected IService<ShipperVo> getService() {
         return service;
+    }
+    @GetMapping("/ping")
+    public String pingMe(){
+        return "Shipper";
     }
 }

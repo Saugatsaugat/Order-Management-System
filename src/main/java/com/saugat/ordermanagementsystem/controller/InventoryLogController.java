@@ -4,6 +4,7 @@ import com.saugat.ordermanagementsystem.service.IService;
 import com.saugat.ordermanagementsystem.service.InventoryLogService;
 import com.saugat.ordermanagementsystem.wrapper.InventoryLogVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,5 +18,10 @@ public class InventoryLogController extends AbstractController<InventoryLogVo> {
     @Override
     protected IService<InventoryLogVo> getService() {
         return service;
+    }
+
+    @GetMapping("/ping")
+    public String pingMe(){
+        return "Inventory Log";
     }
 }
