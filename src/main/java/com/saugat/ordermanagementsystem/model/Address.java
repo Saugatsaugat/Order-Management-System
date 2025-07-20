@@ -36,7 +36,7 @@ public class Address extends AbstractEntity {
     @Column(name = "landmark", nullable = true)
     private String landmark;
 
-    @Column(name = "country", nullable = true, columnDefinition = "DEFAULT 'USA' ", length = 100)
+    @Column(name = "country", nullable = true, columnDefinition = "VARCHAR(100) DEFAULT 'USA'")
     private String country;
 
     public Address() {

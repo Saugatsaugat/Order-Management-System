@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -12,13 +13,13 @@ public class Order extends AbstractEntity{
 
     @NotNull(message = "Order date reason can not be null")
     @Column(name = "order_date", nullable = false)
-    private LocalDate orderDate;
+    private LocalDateTime orderDate;
 
     @Column(name = "require_date")
-    private LocalDate requireDate;
+    private LocalDateTime requireDate;
 
     @Column(name = "shipped_date")
-    private LocalDate shippedDate;
+    private LocalDateTime shippedDate;
 
     @Column(name = "ship_via")
     private String shipVia;
@@ -31,7 +32,7 @@ public class Order extends AbstractEntity{
     public Order() {
     }
 
-    public Order(LocalDate orderDate, LocalDate requireDate, LocalDate shippedDate, String shipVia, Customer customer) {
+    public Order(LocalDateTime orderDate, LocalDateTime requireDate, LocalDateTime shippedDate, String shipVia, Customer customer) {
         this.orderDate = orderDate;
         this.requireDate = requireDate;
         this.shippedDate = shippedDate;
@@ -39,27 +40,27 @@ public class Order extends AbstractEntity{
         this.customer = customer;
     }
 
-    public LocalDate getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
-    public LocalDate getRequireDate() {
+    public LocalDateTime getRequireDate() {
         return requireDate;
     }
 
-    public void setRequireDate(LocalDate requireDate) {
+    public void setRequireDate(LocalDateTime requireDate) {
         this.requireDate = requireDate;
     }
 
-    public LocalDate getShippedDate() {
+    public LocalDateTime getShippedDate() {
         return shippedDate;
     }
 
-    public void setShippedDate(LocalDate shippedDate) {
+    public void setShippedDate(LocalDateTime shippedDate) {
         this.shippedDate = shippedDate;
     }
 
