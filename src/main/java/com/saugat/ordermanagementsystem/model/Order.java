@@ -3,7 +3,6 @@ package com.saugat.ordermanagementsystem.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -33,6 +32,15 @@ public class Order extends AbstractEntity{
     }
 
     public Order(LocalDateTime orderDate, LocalDateTime requireDate, LocalDateTime shippedDate, String shipVia, Customer customer) {
+        this.orderDate = orderDate;
+        this.requireDate = requireDate;
+        this.shippedDate = shippedDate;
+        this.shipVia = shipVia;
+        this.customer = customer;
+    }
+
+    public Order(Long id, LocalDateTime orderDate, LocalDateTime requireDate, LocalDateTime shippedDate, String shipVia, Customer customer) {
+        super.setId(id);
         this.orderDate = orderDate;
         this.requireDate = requireDate;
         this.shippedDate = shippedDate;

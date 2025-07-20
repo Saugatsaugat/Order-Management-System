@@ -35,6 +35,14 @@ public class InventoryLogVo extends AbstractEntityVo{
         this.logDateTime = logDateTime;
     }
 
+    public InventoryLogVo(Long id, Long productId, BigDecimal changeAmount, ProductRateChangeEnum changeReason, LocalDateTime logDateTime) {
+        super.setId(id);
+        this.productId = productId;
+        this.changeAmount = changeAmount;
+        this.changeReason = changeReason;
+        this.logDateTime = logDateTime;
+    }
+
     public Long getProductId() {
         return productId;
     }

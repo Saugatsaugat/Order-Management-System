@@ -28,6 +28,12 @@ public class EmployeeAddress extends AbstractEntity{
         this.address = address;
     }
 
+    public EmployeeAddress(Long id, Employee employee, Address address) {
+        super.setId(id);
+        this.employee = employee;
+        this.address = address;
+    }
+
     public Employee getEmployee() {
         return employee;
     }

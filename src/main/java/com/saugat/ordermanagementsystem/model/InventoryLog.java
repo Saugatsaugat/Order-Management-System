@@ -39,6 +39,14 @@ public class InventoryLog extends AbstractEntity{
         this.logDateTime = logDateTime;
     }
 
+    public InventoryLog(Long id, Long productId, BigDecimal changeAmount, ProductRateChangeEnum changeReason, LocalDateTime logDateTime) {
+        super.setId(id);
+        this.productId = productId;
+        this.changeAmount = changeAmount;
+        this.changeReason = changeReason;
+        this.logDateTime = logDateTime;
+    }
+
     public Long getProductId() {
         return productId;
     }

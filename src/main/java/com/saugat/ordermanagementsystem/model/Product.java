@@ -33,6 +33,13 @@ public class Product extends AbstractEntity{
         this.category = category;
     }
 
+    public Product(Long id, String name, Supplier supplier, Category category) {
+        super.setId(id);
+        this.name = name;
+        this.supplier = supplier;
+        this.category = category;
+    }
+
     public String getName() {
         return name;
     }

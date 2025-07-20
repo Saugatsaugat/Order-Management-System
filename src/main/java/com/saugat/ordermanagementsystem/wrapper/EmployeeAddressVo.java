@@ -20,6 +20,12 @@ public class EmployeeAddressVo extends AbstractEntityVo {
         this.address = address;
     }
 
+    public EmployeeAddressVo(Long id, EmployeeVo employee, AddressVo address) {
+        super.setId(id);
+        this.employee = employee;
+        this.address = address;
+    }
+
     public EmployeeVo getEmployee() {
         return employee;
     }

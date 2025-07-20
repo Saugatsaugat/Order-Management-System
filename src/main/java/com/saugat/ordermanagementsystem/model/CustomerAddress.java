@@ -25,6 +25,13 @@ public class CustomerAddress extends AbstractEntity {
         this.address = address;
     }
 
+    public CustomerAddress(Long id, Customer customer, Address address) {
+        super.setId(id);
+        this.customer = customer;
+        this.address = address;
+    }
+
+
     public Customer getCustomer() {
         return customer;
     }

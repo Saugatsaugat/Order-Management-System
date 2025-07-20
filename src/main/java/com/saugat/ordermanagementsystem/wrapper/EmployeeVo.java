@@ -20,22 +20,28 @@ public class EmployeeVo extends AbstractEntityVo {
     @NotNull(message = "Employee hired date can not be null")
     private LocalDate hireDate;
 
-    private AddressVo address;
-
     @NotNull(message = "Employee phone number can not be null")
     private String phone;
 
     public EmployeeVo() {
     }
 
-    public EmployeeVo(Long id, String firstName, String lastName, String title, LocalDate birthDate, LocalDate hireDate, AddressVo address, String phone) {
+    public EmployeeVo(String firstName, String lastName, String title, LocalDate birthDate, LocalDate hireDate, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.title = title;
+        this.birthDate = birthDate;
+        this.hireDate = hireDate;
+        this.phone = phone;
+    }
+
+    public EmployeeVo(Long id, String firstName, String lastName, String title, LocalDate birthDate, LocalDate hireDate, String phone) {
         super.setId(id);
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
         this.birthDate = birthDate;
         this.hireDate = hireDate;
-        this.address = address;
         this.phone = phone;
     }
 
@@ -77,14 +83,6 @@ public class EmployeeVo extends AbstractEntityVo {
 
     public void setHireDate(LocalDate hireDate) {
         this.hireDate = hireDate;
-    }
-
-    public AddressVo getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressVo address) {
-        this.address = address;
     }
 
     public String getPhone() {

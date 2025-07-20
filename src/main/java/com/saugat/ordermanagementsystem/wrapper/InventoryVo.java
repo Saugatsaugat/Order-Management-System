@@ -1,5 +1,6 @@
 package com.saugat.ordermanagementsystem.wrapper;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,7 @@ public class InventoryVo extends AbstractEntityVo{
     @NotNull(message = "Unit in stock can not be null")
     private Long unitsInStock;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastUpdated;
 
     public InventoryVo() {

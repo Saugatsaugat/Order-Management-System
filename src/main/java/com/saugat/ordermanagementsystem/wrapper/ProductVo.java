@@ -1,6 +1,5 @@
 package com.saugat.ordermanagementsystem.wrapper;
 
-import com.saugat.ordermanagementsystem.model.Supplier;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +9,7 @@ public class ProductVo extends AbstractEntityVo{
     private String name;
 
     @NotNull(message = "Supplier can not be null")
-    private Supplier supplier;
+    private SupplierVo supplier;
 
     @NotNull(message = "Caategory can not be null")
     private CategoryVo category;
@@ -18,7 +17,14 @@ public class ProductVo extends AbstractEntityVo{
     public ProductVo() {
     }
 
-    public ProductVo(String name, Supplier supplier, CategoryVo category) {
+    public ProductVo(String name, SupplierVo supplier, CategoryVo category) {
+        this.name = name;
+        this.supplier = supplier;
+        this.category = category;
+    }
+
+    public ProductVo(Long id, String name, SupplierVo supplier, CategoryVo category) {
+        super.setId(id);
         this.name = name;
         this.supplier = supplier;
         this.category = category;
@@ -32,11 +38,11 @@ public class ProductVo extends AbstractEntityVo{
         this.name = name;
     }
 
-    public Supplier getSupplier() {
+    public SupplierVo getSupplier() {
         return supplier;
     }
 
-    public void setSupplier(Supplier supplier) {
+    public void setSupplier(SupplierVo supplier) {
         this.supplier = supplier;
     }
 

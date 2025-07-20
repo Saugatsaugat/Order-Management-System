@@ -19,6 +19,12 @@ public class CustomerAddressVo extends AbstractEntityVo{
         this.address = address;
     }
 
+    public CustomerAddressVo(Long id, CustomerVo customer, AddressVo address) {
+        super.setId(id);
+        this.customer = customer;
+        this.address = address;
+    }
+
     public CustomerVo getCustomer() {
         return customer;
     }

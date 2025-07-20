@@ -35,6 +35,15 @@ public class OrderVo extends AbstractEntityVo {
         this.customer = customer;
     }
 
+    public OrderVo(Long id, LocalDateTime orderDate, LocalDateTime requireDate, LocalDateTime shippedDate, String shipVia, CustomerVo customer) {
+        super.setId(id);
+        this.orderDate = orderDate;
+        this.requireDate = requireDate;
+        this.shippedDate = shippedDate;
+        this.shipVia = shipVia;
+        this.customer = customer;
+    }
+
     public LocalDateTime getOrderDate() {
         return orderDate;
     }

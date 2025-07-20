@@ -1,6 +1,5 @@
 package com.saugat.ordermanagementsystem.wrapper;
 
-import com.saugat.ordermanagementsystem.model.Shipper;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
@@ -26,12 +25,23 @@ public class OrderDetailVo extends AbstractEntityVo {
     @NotNull(message = "Address can not be null")
     private AddressVo address;
 
-    private Shipper shipper;
+    private ShipperVo shipper;
 
     public OrderDetailVo() {
     }
 
-    public OrderDetailVo(BigDecimal unitPrice, Long quantity, BigDecimal discount, ProductVo product, OrderVo order, AddressVo address, Shipper shipper) {
+    public OrderDetailVo(BigDecimal unitPrice, Long quantity, BigDecimal discount, ProductVo product, OrderVo order, AddressVo address, ShipperVo shipper) {
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.discount = discount;
+        this.product = product;
+        this.order = order;
+        this.address = address;
+        this.shipper = shipper;
+    }
+
+    public OrderDetailVo(Long id, BigDecimal unitPrice, Long quantity, BigDecimal discount, ProductVo product, OrderVo order, AddressVo address, ShipperVo shipper) {
+        super.setId(id);
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.discount = discount;
@@ -89,11 +99,11 @@ public class OrderDetailVo extends AbstractEntityVo {
         this.address = address;
     }
 
-    public Shipper getShipper() {
+    public ShipperVo getShipper() {
         return shipper;
     }
 
-    public void setShipper(Shipper shipper) {
+    public void setShipper(ShipperVo shipper) {
         this.shipper = shipper;
     }
 }

@@ -54,6 +54,16 @@ public class OrderDetail extends AbstractEntity{
         this.shipper = shipper;
     }
 
+    public OrderDetail(Long id, BigDecimal unitPrice, Long quantity, BigDecimal discount, Product product, Order order, Address address, Shipper shipper) {
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.discount = discount;
+        this.product = product;
+        this.order = order;
+        this.address = address;
+        this.shipper = shipper;
+    }
+
     public BigDecimal getUnitPrice() {
         return unitPrice;
     }
