@@ -25,7 +25,7 @@ public class Supplier extends AbstractEntity{
     private String country;
 
     @NotNull(message = "Address can not be null")
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
@@ -85,7 +85,7 @@ public class Supplier extends AbstractEntity{
         return address;
     }
 
-    public void setAddressId(Address address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
