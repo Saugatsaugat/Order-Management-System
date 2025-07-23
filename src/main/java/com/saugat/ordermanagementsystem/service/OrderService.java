@@ -1,9 +1,12 @@
 package com.saugat.ordermanagementsystem.service;
 
 import com.saugat.ordermanagementsystem.mapper.IBaseMapper;
+import com.saugat.ordermanagementsystem.mapper.OrderDetailMapper;
 import com.saugat.ordermanagementsystem.mapper.OrderMapper;
 import com.saugat.ordermanagementsystem.model.Order;
+import com.saugat.ordermanagementsystem.model.OrderDetail;
 import com.saugat.ordermanagementsystem.repo.AbstractRepo;
+import com.saugat.ordermanagementsystem.repo.OrderDetailRepo;
 import com.saugat.ordermanagementsystem.repo.OrderRepo;
 import com.saugat.ordermanagementsystem.wrapper.OrderVo;
 import com.saugat.ordermanagementsystem.wrapper.api.ApiResponse;
@@ -23,6 +26,10 @@ public class OrderService extends AbstractService<Order, OrderVo> {
     private OrderMapper mapper;
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private OrderDetailRepo orderDetailRepo;
+    @Autowired
+    private OrderDetailMapper orderDetailMapper;
 
     @Override
     public String getServiceName() {
@@ -41,6 +48,10 @@ public class OrderService extends AbstractService<Order, OrderVo> {
 
     @Override
     public ResponseEntity<ApiResponse<OrderVo>> create(OrderVo vo){
+        OrderDetail newOrderDetail = orderDetailRepo.save(orderDetailMapper.fromDto(vo.getOrderDetail()));
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setId(newOrderDetail.getId());
+        vo.setOrderDetail(orderDetailMapper.toDto(orderDetail));
         ResponseEntity<ApiResponse<OrderVo>> response = super.create(vo);
         rabbitTemplate.convertAndSend("soms.topic.exchange","order.created", response.getBody().getResult().getId());
         return response;

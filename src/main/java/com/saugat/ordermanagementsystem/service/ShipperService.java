@@ -50,7 +50,7 @@ public class ShipperService extends AbstractService<Shipper, ShipperVo> {
 
         // TO DO
         // Send notification
-//        rabbitTemplate.convertAndSend("soms.topic.exchange", "shipper.assigned", orderId);
+        rabbitTemplate.convertAndSend("soms.topic.exchange", "shipper.assigned", orderId);
 
     }
 }
