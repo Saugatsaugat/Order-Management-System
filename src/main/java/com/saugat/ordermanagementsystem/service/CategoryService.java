@@ -8,8 +8,10 @@ import com.saugat.ordermanagementsystem.repo.CategoryRepo;
 import com.saugat.ordermanagementsystem.wrapper.CategoryVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class CategoryService extends AbstractService<Category, CategoryVo> {
 
     @Autowired

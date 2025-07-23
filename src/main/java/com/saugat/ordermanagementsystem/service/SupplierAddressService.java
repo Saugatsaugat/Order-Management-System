@@ -8,8 +8,10 @@ import com.saugat.ordermanagementsystem.repo.SupplierAddressRepo;
 import com.saugat.ordermanagementsystem.wrapper.SupplierAddressVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class SupplierAddressService extends AbstractService<SupplierAddress, SupplierAddressVo> {
 
     @Autowired

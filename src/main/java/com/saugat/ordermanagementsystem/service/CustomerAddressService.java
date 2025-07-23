@@ -8,8 +8,10 @@ import com.saugat.ordermanagementsystem.repo.CustomerAddressRepo;
 import com.saugat.ordermanagementsystem.wrapper.CustomerAddressVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class CustomerAddressService extends AbstractService<CustomerAddress, CustomerAddressVo> {
 
     @Autowired

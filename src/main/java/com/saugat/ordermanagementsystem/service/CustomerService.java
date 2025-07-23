@@ -11,9 +11,11 @@ import com.saugat.ordermanagementsystem.wrapper.api.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
+@Transactional
 public class CustomerService extends AbstractService<Customer, CustomerVo> {
 
     @Autowired

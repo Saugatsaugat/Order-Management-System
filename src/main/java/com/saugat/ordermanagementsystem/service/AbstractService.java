@@ -8,9 +8,11 @@ import com.saugat.ordermanagementsystem.resource.AbstractResponse;
 import com.saugat.ordermanagementsystem.wrapper.IPersistentEntityVo;
 import com.saugat.ordermanagementsystem.wrapper.api.ApiResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 public abstract class AbstractService<E extends IPersistentEntity<Long>, W extends IPersistentEntityVo<Long>> extends AbstractResponse implements IService<W> {
 
     public abstract String getServiceName();
