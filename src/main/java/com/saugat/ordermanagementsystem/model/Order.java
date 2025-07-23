@@ -28,24 +28,31 @@ public class Order extends AbstractEntity{
     @JoinColumn(name = "customer_id", nullable = false, referencedColumnName = "id")
     private Customer customer;
 
+    @NotNull(message = "Order detail can not be null")
+    @OneToOne
+    @JoinColumn(name = "order_detail_id", referencedColumnName = "id")
+    private OrderDetail orderDetail;
+
     public Order() {
     }
 
-    public Order(LocalDateTime orderDate, LocalDateTime requireDate, LocalDateTime shippedDate, String shipVia, Customer customer) {
+    public Order(LocalDateTime orderDate, LocalDateTime requireDate, LocalDateTime shippedDate, String shipVia, Customer customer, OrderDetail orderDetail) {
         this.orderDate = orderDate;
         this.requireDate = requireDate;
         this.shippedDate = shippedDate;
         this.shipVia = shipVia;
         this.customer = customer;
+        this.orderDetail = orderDetail;
     }
 
-    public Order(Long id, LocalDateTime orderDate, LocalDateTime requireDate, LocalDateTime shippedDate, String shipVia, Customer customer) {
+    public Order(Long id, LocalDateTime orderDate, LocalDateTime requireDate, LocalDateTime shippedDate, String shipVia, Customer customer, OrderDetail orderDetail) {
         super.setId(id);
         this.orderDate = orderDate;
         this.requireDate = requireDate;
         this.shippedDate = shippedDate;
         this.shipVia = shipVia;
         this.customer = customer;
+        this.orderDetail = orderDetail;
     }
 
     public LocalDateTime getOrderDate() {
@@ -88,16 +95,24 @@ public class Order extends AbstractEntity{
         this.customer = customer;
     }
 
+    public OrderDetail getOrderDetail() {
+        return orderDetail;
+    }
+
+    public void setOrderDetail(OrderDetail orderDetail) {
+        this.orderDetail = orderDetail;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(orderDate, order.orderDate) && Objects.equals(requireDate, order.requireDate) && Objects.equals(shippedDate, order.shippedDate) && Objects.equals(shipVia, order.shipVia) && Objects.equals(customer, order.customer);
+        return Objects.equals(orderDate, order.orderDate) && Objects.equals(requireDate, order.requireDate) && Objects.equals(shippedDate, order.shippedDate) && Objects.equals(shipVia, order.shipVia) && Objects.equals(customer, order.customer) && Objects.equals(orderDetail, order.orderDetail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderDate, requireDate, shippedDate, shipVia, customer);
+        return Objects.hash(orderDate, requireDate, shippedDate, shipVia, customer, orderDetail);
     }
 
     @Override

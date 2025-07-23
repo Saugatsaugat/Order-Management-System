@@ -26,11 +26,6 @@ public class OrderDetail extends AbstractEntity{
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     private Product product;
 
-    @NotNull(message = "Order can not be null")
-    @OneToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
-    private Order order;
-
     @NotNull(message = "Address can not be null")
     @ManyToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
@@ -44,22 +39,21 @@ public class OrderDetail extends AbstractEntity{
     public OrderDetail() {
     }
 
-    public OrderDetail(BigDecimal unitPrice, Long quantity, BigDecimal discount, Product product, Order order, Address address, Shipper shipper) {
+    public OrderDetail(BigDecimal unitPrice, Long quantity, BigDecimal discount, Product product, Address address, Shipper shipper) {
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.discount = discount;
         this.product = product;
-        this.order = order;
         this.address = address;
         this.shipper = shipper;
     }
 
-    public OrderDetail(Long id, BigDecimal unitPrice, Long quantity, BigDecimal discount, Product product, Order order, Address address, Shipper shipper) {
+    public OrderDetail(Long id, BigDecimal unitPrice, Long quantity, BigDecimal discount, Product product, Address address, Shipper shipper) {
+        super.setId(id);
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.discount = discount;
         this.product = product;
-        this.order = order;
         this.address = address;
         this.shipper = shipper;
     }
@@ -96,14 +90,6 @@ public class OrderDetail extends AbstractEntity{
         this.product = product;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
     public Address getAddress() {
         return address;
     }
@@ -124,12 +110,12 @@ public class OrderDetail extends AbstractEntity{
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         OrderDetail that = (OrderDetail) o;
-        return Objects.equals(unitPrice, that.unitPrice) && Objects.equals(quantity, that.quantity) && Objects.equals(discount, that.discount) && Objects.equals(product, that.product) && Objects.equals(order, that.order) && Objects.equals(address, that.address) && Objects.equals(shipper, that.shipper);
+        return Objects.equals(unitPrice, that.unitPrice) && Objects.equals(quantity, that.quantity) && Objects.equals(discount, that.discount) && Objects.equals(product, that.product) && Objects.equals(address, that.address) && Objects.equals(shipper, that.shipper);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(unitPrice, quantity, discount, product, order, address, shipper);
+        return Objects.hash(unitPrice, quantity, discount, product, address, shipper);
     }
 
     @Override

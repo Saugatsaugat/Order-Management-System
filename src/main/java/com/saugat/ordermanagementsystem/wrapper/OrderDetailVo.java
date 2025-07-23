@@ -19,9 +19,6 @@ public class OrderDetailVo extends AbstractEntityVo {
     @NotNull(message = "Product can not be null")
     private ProductVo product;
 
-    @NotNull(message = "Order can not be null")
-    private OrderVo order;
-
     @NotNull(message = "Address can not be null")
     private AddressVo address;
 
@@ -30,23 +27,21 @@ public class OrderDetailVo extends AbstractEntityVo {
     public OrderDetailVo() {
     }
 
-    public OrderDetailVo(BigDecimal unitPrice, Long quantity, BigDecimal discount, ProductVo product, OrderVo order, AddressVo address, ShipperVo shipper) {
+    public OrderDetailVo(BigDecimal unitPrice, Long quantity, BigDecimal discount, ProductVo product, AddressVo address, ShipperVo shipper) {
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.discount = discount;
         this.product = product;
-        this.order = order;
         this.address = address;
         this.shipper = shipper;
     }
 
-    public OrderDetailVo(Long id, BigDecimal unitPrice, Long quantity, BigDecimal discount, ProductVo product, OrderVo order, AddressVo address, ShipperVo shipper) {
+    public OrderDetailVo(Long id, BigDecimal unitPrice, Long quantity, BigDecimal discount, ProductVo product, AddressVo address, ShipperVo shipper) {
         super.setId(id);
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.discount = discount;
         this.product = product;
-        this.order = order;
         this.address = address;
         this.shipper = shipper;
     }
@@ -81,14 +76,6 @@ public class OrderDetailVo extends AbstractEntityVo {
 
     public void setProduct(ProductVo product) {
         this.product = product;
-    }
-
-    public OrderVo getOrder() {
-        return order;
-    }
-
-    public void setOrder(OrderVo order) {
-        this.order = order;
     }
 
     public AddressVo getAddress() {

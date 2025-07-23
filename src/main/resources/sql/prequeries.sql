@@ -57,25 +57,25 @@ Insert ignore into `customer_address` (`id`,`customer_id`,`address_id`) VALUES (
 Insert ignore into `customer_address` (`id`,`customer_id`,`address_id`) VALUES ('2','2','2');
 Insert ignore into `customer_address` (`id`,`customer_id`,`address_id`) VALUES ('3','3','3');
 
-# Inserting data into Order table;
-Insert Ignore into `orders` (`id`, `order_date`, `require_date`, `shipped_date`, `ship_via`, `customer_id`)
-    VALUES ('1', '2025-07-03 00:00:00', '2025-07-03 00:00:00', '2025-07-03 00:00:00', 'road', '1');
-
-Insert Ignore into `orders` (`id`, `order_date`, `require_date`, `shipped_date`, `ship_via`, `customer_id`)
-    VALUES ('2', '2025-07-01 00:00:00', '2025-07-02 00:00:00', '2025-07-02 00:00:00', 'road', '2');
-
-Insert Ignore into `orders` (`id`, `order_date`, `require_date`, `shipped_date`, `ship_via`, `customer_id`)
-    VALUES ('3', '2025-07-02 00:00:00', '2025-07-02 00:00:00', '2025-07-02 00:00:00', 'road', '3');
-
 # Inserting data into Shipper table;
 Insert IGNORE into `shipper` (`id`, `company_name`, `phone`) VALUES ('1', 'ABC Pvt. Ltd.', '1100000000');
 Insert IGNORE into `shipper` (`id`, `company_name`, `phone`) VALUES ('2', 'XYZ Pvt. Ltd.', '2200000000');
 Insert IGNORE into `shipper` (`id`, `company_name`, `phone`) VALUES ('3', 'S&J Pvt. Ltd.', '3300000000');
 
 # Inserting data into OrderDetail table;
-Insert ignore into `order_detail` (`id`, `unit_price`, `quantity`, `discount`, `product_id`, `order_id`, `address_id`, `shipper_id`)
-       VALUES ('1', '2.00', '1', '0.0', '6', '1', '1', '1');
-Insert ignore into `order_detail` (`id`, `unit_price`, `quantity`, `discount`, `product_id`, `order_id`, `address_id`, `shipper_id`)
-       VALUES ('2', '3.50', '2', '0.0', '5', '2', '2', '2');
-Insert ignore into `order_detail` (`id`, `unit_price`, `quantity`, `discount`, `product_id`, `order_id`, `address_id`, `shipper_id`)
-       VALUES ('3', '0.59', '5', '0.0', '1', '3', '3', '3');
+Insert ignore into `order_detail` (`id`, `unit_price`, `quantity`, `discount`, `product_id`, `address_id`, `shipper_id`)
+       VALUES ('1', '2.00', '1', '0.0', '6', '1', '1');
+Insert ignore into `order_detail` (`id`, `unit_price`, `quantity`, `discount`, `product_id`, `address_id`, `shipper_id`)
+       VALUES ('2', '3.50', '2', '0.0', '5', '2', '2');
+Insert ignore into `order_detail` (`id`, `unit_price`, `quantity`, `discount`, `product_id`, `address_id`, `shipper_id`)
+       VALUES ('3', '0.59', '5', '0.0', '1', '3', '3');
+
+# Inserting data into Order table;
+Insert Ignore into `orders` (`id`, `order_date`, `require_date`, `shipped_date`, `ship_via`, `customer_id`, `order_detail_id`)
+    VALUES ('1', '2025-07-03 00:00:00', '2025-07-03 00:00:00', '2025-07-03 00:00:00', 'road', '1', '1');
+
+Insert Ignore into `orders` (`id`, `order_date`, `require_date`, `shipped_date`, `ship_via`, `customer_id`, `order_detail_id`)
+    VALUES ('2', '2025-07-01 00:00:00', '2025-07-02 00:00:00', '2025-07-02 00:00:00', 'road', '2', '1');
+
+Insert Ignore into `orders` (`id`, `order_date`, `require_date`, `shipped_date`, `ship_via`, `customer_id`, `order_detail_id`)
+    VALUES ('3', '2025-07-02 00:00:00', '2025-07-02 00:00:00', '2025-07-02 00:00:00', 'road', '3', '1');

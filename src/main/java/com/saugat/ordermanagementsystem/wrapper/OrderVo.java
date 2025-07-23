@@ -23,6 +23,9 @@ public class OrderVo extends AbstractEntityVo {
     @NotNull(message = "Customer can not be null")
     private CustomerVo customer;
 
+    @NotNull(message = "Order Detail can not be null")
+    private OrderDetailVo orderDetail;
+
 
     public OrderVo() {
     }
@@ -82,5 +85,13 @@ public class OrderVo extends AbstractEntityVo {
 
     public void setCustomer(CustomerVo customer) {
         this.customer = customer;
+    }
+
+    public OrderDetailVo getOrderDetail() {
+        return orderDetail;
+    }
+
+    public void setOrderDetail(OrderDetailVo orderDetail) {
+        this.orderDetail = orderDetail;
     }
 }
