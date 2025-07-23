@@ -1,6 +1,5 @@
 package com.saugat.ordermanagementsystem.service;
 
-import com.saugat.ordermanagementsystem.exceptions.CustomException;
 import com.saugat.ordermanagementsystem.mapper.CustomerMapper;
 import com.saugat.ordermanagementsystem.mapper.IBaseMapper;
 import com.saugat.ordermanagementsystem.model.Customer;
