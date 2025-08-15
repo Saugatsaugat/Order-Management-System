@@ -1,5 +1,6 @@
 package com.saugat.ordermanagementsystem.wrapper;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,7 @@ public class UserVo extends AbstractEntityVo{
     private String email;
 
     @NotNull(message = "Password can not be null")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     private EmployeeVo employee;

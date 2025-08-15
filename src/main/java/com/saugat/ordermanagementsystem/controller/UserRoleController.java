@@ -16,6 +16,6 @@ public class UserRoleController extends AbstractController<UserRoleVo> {
 
     @Override
     protected IService getService() {
-        return null;
+        return service;
     }
 }
