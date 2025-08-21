@@ -1,5 +1,6 @@
 package com.saugat.ordermanagementsystem.config;
 
+import com.saugat.ordermanagementsystem.exceptions.CustomBasicAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -18,7 +19,7 @@ public class ProdSpringConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.redirectToHttps(Customizer.withDefaults())  //https only
+        httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)      //csrf disabled
                 .authorizeHttpRequests((request) -> request
                         .requestMatchers("/address/**", "/category/**", "/customer/**", "/employee/**", "/inventory/**",
@@ -27,7 +28,7 @@ public class ProdSpringConfig {
                                 .requestMatchers("/user/**").permitAll()
                         )
                 .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults());
+                .httpBasic(ebc -> ebc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
         return httpSecurity.build();
     }
 
