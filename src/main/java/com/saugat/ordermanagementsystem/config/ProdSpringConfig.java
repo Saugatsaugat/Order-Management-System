@@ -18,7 +18,8 @@ public class ProdSpringConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.csrf(AbstractHttpConfigurer::disable)
+        httpSecurity.redirectToHttps(Customizer.withDefaults())  //https only
+                .csrf(AbstractHttpConfigurer::disable)      //csrf disabled
                 .authorizeHttpRequests((request) -> request
                         .requestMatchers("/address/**", "/category/**", "/customer/**", "/employee/**", "/inventory/**",
                                 "/inventoryLog/**","/order/**", "/orderDetail/**", "/product/**", "/shipper/**", "/supplier/**",
