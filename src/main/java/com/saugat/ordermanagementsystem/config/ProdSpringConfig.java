@@ -1,5 +1,6 @@
 package com.saugat.ordermanagementsystem.config;
 
+import com.saugat.ordermanagementsystem.exceptions.CustomAccessDeniedHandler;
 import com.saugat.ordermanagementsystem.exceptions.CustomBasicAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,11 +25,13 @@ public class ProdSpringConfig {
                 .authorizeHttpRequests((request) -> request
                         .requestMatchers("/address/**", "/category/**", "/customer/**", "/employee/**", "/inventory/**",
                                 "/inventoryLog/**","/order/**", "/orderDetail/**", "/product/**", "/shipper/**", "/supplier/**",
-                                "/customerAddress/**","/employeeAddress/**", "/supplierAddress/**", "/userRole**").authenticated()
+                                "/customerAddress/**","/employeeAddress/**", "/supplierAddress/**", "/userRole/**").authenticated()
                                 .requestMatchers("/user/**").permitAll()
                         )
                 .formLogin(Customizer.withDefaults())
-                .httpBasic(ebc -> ebc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()));
+                .httpBasic(ebc -> ebc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()))
+                .exceptionHandling(ehc -> ehc.accessDeniedHandler(new CustomAccessDeniedHandler()))
+        ;
         return httpSecurity.build();
     }
 
