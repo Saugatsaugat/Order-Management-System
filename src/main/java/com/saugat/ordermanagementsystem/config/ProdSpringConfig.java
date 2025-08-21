@@ -21,6 +21,7 @@ public class ProdSpringConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity
+                .sessionManagement(smc->smc.invalidSessionUrl("/invalidSession").maximumSessions(1).maxSessionsPreventsLogin(true))
                 .csrf(AbstractHttpConfigurer::disable)      //csrf disabled
                 .authorizeHttpRequests((request) -> request
                         .requestMatchers("/address/**", "/category/**", "/customer/**", "/employee/**", "/inventory/**",
