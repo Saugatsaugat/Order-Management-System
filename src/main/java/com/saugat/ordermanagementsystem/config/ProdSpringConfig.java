@@ -21,16 +21,18 @@ public class ProdSpringConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity
-                .sessionManagement(smc->smc.invalidSessionUrl("/invalidSession").maximumSessions(1).maxSessionsPreventsLogin(true))
+                .sessionManagement(smc->smc.invalidSessionUrl("/invalidSession").maximumSessions(1).maxSessionsPreventsLogin(false))
                 .csrf(AbstractHttpConfigurer::disable)      //csrf disabled
                 .authorizeHttpRequests((request) -> request
                         .requestMatchers("/address/**", "/category/**", "/customer/**", "/employee/**", "/inventory/**",
                                 "/inventoryLog/**","/order/**", "/orderDetail/**", "/product/**", "/shipper/**", "/supplier/**",
                                 "/customerAddress/**","/employeeAddress/**", "/supplierAddress/**", "/userRole/**").authenticated()
-                                .requestMatchers("/user/**").permitAll()
+                                .requestMatchers("/user/**", "/invalidSession").permitAll()
                         )
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(ebc -> ebc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()))
+                .logout(loc -> loc.logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).clearAuthentication(true)
+                        .deleteCookies("JSESSIONID"))
                 .exceptionHandling(ehc -> ehc.accessDeniedHandler(new CustomAccessDeniedHandler()))
         ;
         return httpSecurity.build();
