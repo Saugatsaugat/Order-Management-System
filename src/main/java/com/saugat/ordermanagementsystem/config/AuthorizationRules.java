@@ -49,18 +49,22 @@ public class AuthorizationRules {
                 .requestMatchers("/employeeAddress/**").hasAuthority("VIEW_EMPLOYEE_ADDRESS")
 
                 //SupplierAddress
-                .requestMatchers("/supplierAddress/**").hasAuthority("VIEW_SUPPLIER_ADDRESS");
+                .requestMatchers("/supplierAddress/**").hasAuthority("VIEW_SUPPLIER_ADDRESS")
+
+                //UserRole
+                .requestMatchers("/userRole/**").hasAuthority("VIEW_USER_ROLE");
+
+
     }
 
     public void configureRoles(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry http){
         http.requestMatchers("/address/**","/category/**","/customer/**","/employee/**","/inventory/**","/inventoryLog/**",
                 "/order/**","/orderDetail/**", "/product/**","/shipper/**","/supplier/**","/customerAddress/**","/employeeAddress/**",
-                "/supplierAddress/**").hasAnyRole("ADMIN", "USER");
+                "/supplierAddress/**", "/userRole/**").hasRole("EMPLOYEE");
     }
 
     public void configureOther(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry http){
         http
-            .requestMatchers("/userRole/**").authenticated()
-            .requestMatchers("/user/**","/sayHello", "/invalidSession").permitAll();
+            .requestMatchers("/login", "/register","/sayHello", "/invalidSession").permitAll();
     }
 }

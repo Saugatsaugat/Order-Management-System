@@ -27,7 +27,7 @@ public class OMSUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User detail is not found"));
         List<UserRole> userRoles = userRoleRepo.findByUserId(user.getId()).orElseThrow(() -> new UsernameNotFoundException("User role is not configured"));
-        List<GrantedAuthority> authorityList = userRoles.stream().map( x-> new SimpleGrantedAuthority(x.getUserRole().getValue())).collect(Collectors.toList());
+        List<GrantedAuthority> authorityList = userRoles.stream().map( x-> new SimpleGrantedAuthority(x.getUserRole().getValue().toUpperCase())).collect(Collectors.toList());
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorityList );
     }
 }

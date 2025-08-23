@@ -2,7 +2,9 @@ package com.saugat.ordermanagementsystem.config;
 
 import com.saugat.ordermanagementsystem.exceptions.CustomAccessDeniedHandler;
 import com.saugat.ordermanagementsystem.exceptions.CustomBasicAuthenticationEntryPoint;
+import com.saugat.ordermanagementsystem.filter.AuthoritiesLoggingAfterFilter;
 import com.saugat.ordermanagementsystem.filter.CsrfCookieFilter;
+import com.saugat.ordermanagementsystem.filter.RequestValidationBeforeFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -45,6 +47,9 @@ public class ProdSpringConfig {
                 .csrf(csrf->csrf.csrfTokenRequestHandler(requestAttributeHandler).ignoringRequestMatchers("/login", "/register")
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                         .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
+
+                .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)
 
                 .authorizeHttpRequests((request) -> {
                     authorizationRules.configureRoles(request);
