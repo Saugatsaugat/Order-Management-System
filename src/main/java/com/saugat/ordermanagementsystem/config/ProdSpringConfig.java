@@ -2,6 +2,8 @@ package com.saugat.ordermanagementsystem.config;
 
 import com.saugat.ordermanagementsystem.exceptions.CustomAccessDeniedHandler;
 import com.saugat.ordermanagementsystem.exceptions.CustomBasicAuthenticationEntryPoint;
+import com.saugat.ordermanagementsystem.filter.CsrfCookieFilter;
+import org.apache.catalina.filters.CsrfPreventionFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -13,6 +15,10 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.password.HaveIBeenPwnedRestApiPasswordChecker;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -25,11 +31,16 @@ public class ProdSpringConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+        CsrfTokenRequestAttributeHandler requestAttributeHandler = new CsrfTokenRequestAttributeHandler();
+        requestAttributeHandler.setCsrfRequestAttributeName("_csrf");
+
         httpSecurity
                 .sessionManagement(smc->smc.sessionFixation(sf->sf.newSession())
                         .invalidSessionUrl("/invalidSession").maximumSessions(1)
                         .maxSessionsPreventsLogin(false))
-                .csrf(AbstractHttpConfigurer::disable)      //csrf disabled
+                .csrf(csrf->csrf.csrfTokenRequestHandler(requestAttributeHandler).ignoringRequestMatchers("/login", "/register")
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+                        .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((request) -> request
                         .requestMatchers("/address/**", "/category/**", "/customer/**", "/employee/**", "/inventory/**",
                                 "/inventoryLog/**","/order/**", "/orderDetail/**", "/product/**", "/shipper/**", "/supplier/**",
