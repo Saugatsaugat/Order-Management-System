@@ -2,15 +2,17 @@ package com.saugat.ordermanagementsystem.config;
 
 import com.saugat.ordermanagementsystem.exceptions.CustomAccessDeniedHandler;
 import com.saugat.ordermanagementsystem.exceptions.CustomBasicAuthenticationEntryPoint;
-import com.saugat.ordermanagementsystem.filter.AuthoritiesLoggingAfterFilter;
-import com.saugat.ordermanagementsystem.filter.CsrfCookieFilter;
-import com.saugat.ordermanagementsystem.filter.RequestValidationBeforeFilter;
+import com.saugat.ordermanagementsystem.filter.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.password.CompromisedPasswordChecker;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -40,16 +42,16 @@ public class ProdSpringConfig {
         requestAttributeHandler.setCsrfRequestAttributeName("_csrf");
 
         httpSecurity
-                .sessionManagement(smc->smc.sessionFixation(sf->sf.newSession())
-                        .invalidSessionUrl("/invalidSession").maximumSessions(1)
-                        .maxSessionsPreventsLogin(false))
+                .sessionManagement(smc-> smc.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                .csrf(csrf->csrf.csrfTokenRequestHandler(requestAttributeHandler).ignoringRequestMatchers("/login", "/register")
+                .csrf(csrf->csrf.csrfTokenRequestHandler(requestAttributeHandler).ignoringRequestMatchers("/user/login", "/user/register")
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                         .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
 
                 .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
                 .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
 
                 .authorizeHttpRequests((request) -> {
                     authorizationRules.configureRoles(request);
@@ -90,4 +92,14 @@ public class ProdSpringConfig {
         source.registerCorsConfiguration("/**", corsConfiguration);
         return source;
     }
+
+    @Bean
+    public AuthenticationManager authenticationManager(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
+        OMSProdUsernamePwdAuthenticationProvider authenticationProvider =
+                new OMSProdUsernamePwdAuthenticationProvider(userDetailsService, passwordEncoder);
+        ProviderManager providerManager = new ProviderManager(authenticationProvider);
+        providerManager.setEraseCredentialsAfterAuthentication(false);
+        return providerManager;
+    }
+
 }

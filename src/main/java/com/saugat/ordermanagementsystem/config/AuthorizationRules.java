@@ -65,6 +65,6 @@ public class AuthorizationRules {
 
     public void configureOther(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry http){
         http
-            .requestMatchers("/login", "/register","/sayHello", "/invalidSession").permitAll();
+            .requestMatchers("/user/login", "/user/register","/sayHello", "/invalidSession").permitAll();
     }
 }
