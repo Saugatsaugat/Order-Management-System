@@ -28,12 +28,26 @@ public class JWTTokenGeneratorFilter extends OncePerRequestFilter {
             if (null != env) {
                 String secret = env.getProperty(ApplicationConstants.JWT_SECRET_KEY, ApplicationConstants.JWT_SECRET_DEFAULT_VALUE);
                 SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-                String jwt = Jwts.builder().issuer("Order Management System").subject("JWT Token")
+                String jwt = Jwts.builder().issuer("Order Management System")
+                        .subject("JWT Token")
                         .claim("username", authentication.getName())
-                        .claim("authorities", authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(",")))
+                        .claim("authorities", authentication.getAuthorities().stream()
+                                .map(GrantedAuthority::getAuthority)
+                                .collect(Collectors.joining(",")))
                         .issuedAt(new Date())
                         .expiration(new Date((new Date()).getTime() + 30000000))
-                        .signWith(secretKey).compact();
+                        .signWith(secretKey)
+                        .compact();
+
+                String refreshToken = Jwts.builder()
+                                .issuer("Order Management System")
+                                .subject("Refresh Token")
+                                .claim("username", authentication.getName())
+                                .issuedAt(new Date())
+                                .expiration(new Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000))
+                                .signWith(secretKey)
+                                .compact();
+
                 response.setHeader(ApplicationConstants.JWT_HEADER, jwt);
             }
         }

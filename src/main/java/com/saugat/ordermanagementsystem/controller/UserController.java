@@ -48,6 +48,7 @@ public class UserController extends AbstractController<UserVo> {
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> userLogin(@RequestBody LoginRequestDTO loginRequest) {
         String jwt = "";
+        String refreshToken = "";
         Authentication authentication = UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.username(), loginRequest.password());
         Authentication authenticationResponse = authenticationManager.authenticate(authentication);
 
@@ -61,10 +62,21 @@ public class UserController extends AbstractController<UserVo> {
                         .issuedAt(new Date())
                         .expiration(new Date((new Date()).getTime() + 3000000))
                         .signWith(secretKey).compact();
+
+                refreshToken = Jwts.builder()
+                        .issuer("Order Management System")
+                        .subject("Refresh Token")
+                        .claim("username", authentication.getName())
+                        .issuedAt(new Date())
+                        .expiration(new Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000))
+                        .signWith(secretKey)
+                        .compact();
             }
         }
+
+        // just sending the refresh token for practice, it will not be stored in db and further logic to generate jwt based on refresh token is currently not implemented.
         return ResponseEntity.status(HttpStatus.OK).header(ApplicationConstants.JWT_HEADER, jwt)
-                .body(new LoginResponseDTO(HttpStatus.OK.getReasonPhrase(), jwt));
+                .body(new LoginResponseDTO(HttpStatus.OK.getReasonPhrase(), jwt, refreshToken));
 
     }
 }
