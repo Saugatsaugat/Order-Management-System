@@ -60,11 +60,11 @@ public class AuthorizationRules {
     public void configureRoles(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry http){
         http.requestMatchers("/address/**","/category/**","/customer/**","/employee/**","/inventory/**","/inventoryLog/**",
                 "/order/**","/orderDetail/**", "/product/**","/shipper/**","/supplier/**","/customerAddress/**","/employeeAddress/**",
-                "/supplierAddress/**", "/userRole/**").hasRole("EMPLOYEE");
+                "/supplierAddress/**", "/userRole/**","/sayHello").hasRole("EMPLOYEE");
     }
 
     public void configureOther(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry http){
         http
-            .requestMatchers("/user/login", "/user/register","/sayHello", "/invalidSession").permitAll();
+            .requestMatchers("/user/login", "/user/register", "/invalidSession").permitAll();
     }
 }
