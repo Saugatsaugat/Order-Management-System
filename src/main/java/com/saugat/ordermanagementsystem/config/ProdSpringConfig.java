@@ -61,6 +61,7 @@ public class ProdSpringConfig {
                         })
 
                 .formLogin(Customizer.withDefaults())
+                .oauth2Login(Customizer.withDefaults())
                 .httpBasic(ebc -> ebc.authenticationEntryPoint(new CustomBasicAuthenticationEntryPoint()))
                 .logout(loc -> loc.logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).clearAuthentication(true)
                         .deleteCookies("JSESSIONID"))
