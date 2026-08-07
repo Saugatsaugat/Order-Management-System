@@ -4,5 +4,5 @@ import com.saugat.ordermanagementsystem.model.Shipper;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ShipperRepo extends AbstractRepo<Shipper>{
+public interface ShipperRepo extends AbstractRepo<Shipper, Long>{
 }

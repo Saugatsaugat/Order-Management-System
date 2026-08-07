@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRoleRepo extends AbstractRepo<UserRole>{
+public interface UserRoleRepo extends AbstractRepo<UserRole, Long>{
 
     Optional<List<UserRole>> findByUserId(long id);
 }

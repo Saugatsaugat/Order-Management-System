@@ -4,6 +4,6 @@ import com.saugat.ordermanagementsystem.model.Customer;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomerRepo extends AbstractRepo<Customer> {
+public interface CustomerRepo extends AbstractRepo<Customer, Long> {
 
 }

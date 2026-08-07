@@ -4,5 +4,5 @@ import com.saugat.ordermanagementsystem.model.Category;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoryRepo extends AbstractRepo<Category>{
+public interface CategoryRepo extends AbstractRepo<Category, Long>{
 }

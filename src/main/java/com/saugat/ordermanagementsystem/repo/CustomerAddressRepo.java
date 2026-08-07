@@ -4,5 +4,5 @@ import com.saugat.ordermanagementsystem.model.CustomerAddress;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomerAddressRepo extends AbstractRepo<CustomerAddress> {
+public interface CustomerAddressRepo extends AbstractRepo<CustomerAddress, Long> {
 }
