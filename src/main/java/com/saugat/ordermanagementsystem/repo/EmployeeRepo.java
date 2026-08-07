@@ -4,5 +4,5 @@ import com.saugat.ordermanagementsystem.model.Employee;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepo extends AbstractRepo<Employee, Long> {
+public interface EmployeeRepo extends AbstractRepo<Employee> {
 }

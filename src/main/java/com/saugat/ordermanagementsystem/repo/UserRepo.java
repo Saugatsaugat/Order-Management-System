@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepo extends AbstractRepo<User, Long> {
+public interface UserRepo extends AbstractRepo<User> {
 
    Optional<User> findByEmail(String email);
 }
