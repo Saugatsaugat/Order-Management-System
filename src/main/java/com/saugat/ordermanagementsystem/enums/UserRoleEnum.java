@@ -6,8 +6,8 @@ public enum UserRoleEnum implements IAbstractEnum{
     ROLE_ADMIN("Role_Admin");
 
     private final String val;
-    private String getVal(){return val;}
 
+//    constructor in enum is private by default.
     private UserRoleEnum(String val){this.val = val;}
     @Override
     public String getValue() {
