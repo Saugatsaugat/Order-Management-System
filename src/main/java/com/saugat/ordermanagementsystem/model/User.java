@@ -20,7 +20,7 @@ public class User extends AbstractEntity{
     private String email;
 
     @NotNull(message = "Password is required")
-    @Column(name = "password", nullable = false, unique = true)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @OneToOne
