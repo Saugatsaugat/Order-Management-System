@@ -58,9 +58,24 @@ public class AuthorizationRules {
     }
 
     public void configureRoles(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry http){
-        http.requestMatchers("/address/**","/category/**","/customer/**","/employee/**","/inventory/**","/inventoryLog/**",
-                "/order/**","/orderDetail/**", "/product/**","/shipper/**","/supplier/**","/customerAddress/**","/employeeAddress/**",
-                "/supplierAddress/**", "/userRole/**","/sayHello").hasRole("EMPLOYEE");
+        http.requestMatchers(
+                "/address/**",
+                "/category/**",
+                "/customer/**",
+                "/employee/**",
+                "/inventory/**",
+                "/inventoryLog/**",
+                "/order/**",
+                "/orderDetail/**",
+                "/product/**",
+                "/shipper/**",
+                "/supplier/**",
+                "/customerAddress/**",
+                "/employeeAddress/**",
+                "/supplierAddress/**",
+                "/userRole/**",
+                "/sayHello")
+                .hasAnyRole("EMPLOYEE", "ADMIN");
     }
 
     public void configureOther(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry http){
