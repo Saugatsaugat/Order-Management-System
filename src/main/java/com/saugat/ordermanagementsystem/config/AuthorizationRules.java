@@ -13,46 +13,46 @@ public class AuthorizationRules {
                 .requestMatchers("/address/**").authenticated()
 
                 //Category
-                .requestMatchers("/category/**").hasAuthority("VIEW_CATEGORY")
+                .requestMatchers("/category/**").authenticated()
 
                 //Customer
-                .requestMatchers("/customer/**").hasAuthority("VIEW_CUSTOMER")
+                .requestMatchers("/customer/**").authenticated()
 
                 //Employee
-                .requestMatchers("/employee/**").hasAuthority("VIEW_EMPLOYEE")
+                .requestMatchers("/employee/**").authenticated()
 
                 //Inventory
-                .requestMatchers("/inventory/**").hasAuthority("VIEW_INVENTORY")
+                .requestMatchers("/inventory/**").authenticated()
 
                 //InventoryLog
-                .requestMatchers("/inventoryLog/**").hasAuthority("VIEW_INVENTORY_lOG")
+                .requestMatchers("/inventoryLog/**").authenticated()
 
                 //Order
-                .requestMatchers("/order/**").hasAuthority("VIEW_ORDER")
+                .requestMatchers("/order/**").authenticated()
 
                 //OrderDetail
-                .requestMatchers("/orderDetail/**").hasAuthority("VIEW_ORDER_DETAIL")
+                .requestMatchers("/orderDetail/**").authenticated()
 
                 //Product
-                .requestMatchers("/product/**").hasAuthority("VIEW_PRODUCT")
+                .requestMatchers("/product/**").authenticated()
 
                 //Shipper
-                .requestMatchers("/shipper/**").hasAuthority("VIEW_SHIPPER")
+                .requestMatchers("/shipper/**").authenticated()
 
                 //Supplier
-                .requestMatchers("/supplier/**").hasAuthority("VIEW_SUPPLIER")
+                .requestMatchers("/supplier/**").authenticated()
 
                 //CustomerAddress
-                .requestMatchers("/customerAddress/**").hasAuthority("VIEW_CUSTOMER_ADDRESS")
+                .requestMatchers("/customerAddress/**").authenticated()
 
                 //EmployeeAddress
-                .requestMatchers("/employeeAddress/**").hasAuthority("VIEW_EMPLOYEE_ADDRESS")
+                .requestMatchers("/employeeAddress/**").authenticated()
 
                 //SupplierAddress
-                .requestMatchers("/supplierAddress/**").hasAuthority("VIEW_SUPPLIER_ADDRESS")
+                .requestMatchers("/supplierAddress/**").authenticated()
 
                 //UserRole
-                .requestMatchers("/userRole/**").hasAuthority("VIEW_USER_ROLE");
+                .requestMatchers("/userRole/**").authenticated();
 
 
     }

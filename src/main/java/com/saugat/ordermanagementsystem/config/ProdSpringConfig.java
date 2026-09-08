@@ -44,9 +44,10 @@ public class ProdSpringConfig {
         httpSecurity
                 .sessionManagement(smc-> smc.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                .csrf(csrf->csrf.csrfTokenRequestHandler(requestAttributeHandler).ignoringRequestMatchers("/user/login", "/user/register")
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
-                        .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
+//                .csrf(csrf->csrf.csrfTokenRequestHandler(requestAttributeHandler).ignoringRequestMatchers("/user/login", "/user/register")
+//                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+//                        .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
+                .csrf(csrf -> csrf.disable())
 
                 .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
                 .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)
